@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dream Shop | Admin Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #07111f;
+            color: #ffffff;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        #loginSection {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background:
+                radial-gradient(circle at top right, rgba(34,211,238,.15), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(37,99,235,.15), transparent 35%),
+                #07111f;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 430px;
+            background: rgba(17,24,39,.95);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 25px 70px rgba(0,0,0,.4);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 15px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #06b6d4, #2563eb);
+            box-shadow: 0 12px 35px rgba(37,99,235,.35);
+        }
+
+        .logo h1 {
+            font-size: 27px;
+            margin-bottom: 7px;
+        }
+
+        .logo p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: #0b1627;
+            color: #fff;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .input-group input:focus {
+            border-color: #22d3ee;
+            box-shadow: 0 0 0 3px rgba(34,211,238,.08);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#06b6d4,#2563eb);
+            color: #fff;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .error-message {
+            color: #f87171;
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: center;
+            min-height: 20px;
+        }
+
+
+        /* =========================
+           DASHBOARD
+        ========================= */
+
+        #dashboardSection {
+            min-height: 100vh;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(7,17,31,.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        .topbar-inner {
+            max-width: 1400px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand h1 {
+            font-size: 22px;
+        }
+
+        .brand p {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .logout-btn {
+            border: 1px solid rgba(248,113,113,.3);
+            background: rgba(248,113,113,.08);
+            color: #fca5a5;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 30px 25px 60px;
+        }
+
+        /* STATS */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #111c2d;
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .stat-card .icon {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .stat-card h2 {
+            font-size: 28px;
+        }
+
+        /* ORDERS */
+
+        .orders-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            gap: 15px;
+        }
+
+        .orders-header h2 {
+            font-size: 22px;
+        }
+
+        .refresh-btn {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: #111c2d;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .orders-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .order-card {
+            background: #111c2d;
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .order-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(34,211,238,.35);
+            box-shadow: 0 15px 35px rgba(0,0,0,.2);
+        }
+
+        .order-main {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+        }
+
+        .order-info h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .order-id {
+            color: #22d3ee;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .order-info p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin: 5px 0;
+        }
+
+        .order-total {
+            text-align: right;
+        }
+
+        .order-total strong {
+            color: #22d3ee;
+            font-size: 20px;
+        }
+
+        .order-total small {
+            display: block;
+            color: #94a3b8;
+            margin-top: 7px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .status-pending {
+            background: rgba(251,191,36,.12);
+            color: #fbbf24;
+        }
+
+        .status-confirmed {
+            background: rgba(34,197,94,.12);
+            color: #4ade80;
+        }
+
+        .status-cancelled {
+            background: rgba(248,113,113,.12);
+            color: #f87171;
+        }
+
+        .product-preview {
+            display: flex;
+            gap: 10px;
+            padding: 0 20px 18px;
+            flex-wrap: wrap;
+        }
+
+        .product-preview-item {
+            width: 58px;
+            height: 58px;
+            border-radius: 10px;
+            background: #091424;
+            border: 1px solid rgba(255,255,255,.07);
+            overflow: hidden;
+        }
+
+        .product-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .empty-orders {
+            text-align: center;
+            padding: 70px 20px;
+            background: #111c2d;
+            border-radius: 18px;
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,.72);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #101b2c;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 22px;
+            box-shadow: 0 30px 90px rgba(0,0,0,.5);
+        }
+
+        .modal-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: #101b2c;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+        }
+
+        .close-modal {
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 10px;
+            background: rgba(255,255,255,.07);
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .customer-box {
+            background: #0b1627;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .customer-box h3 {
+            margin-bottom: 13px;
+        }
+
+        .customer-row {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,.05);
+        }
+
+        .customer-row:last-child {
+            border-bottom: 0;
+        }
+
+        .customer-row span:first-child {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .customer-row span:last-child {
+            color: #fff;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .modal-products h3 {
+            margin-bottom: 12px;
+        }
+
+        .detail-product {
+            display: grid;
+            grid-template-columns: 75px 1fr auto;
+            align-items: center;
+            gap: 15px;
+            background: #0b1627;
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .detail-product-image {
+            width: 75px;
+            height: 75px;
+            border-radius: 12px;
+            background: #07111f;
+            overflow: hidden;
+        }
+
+        .detail-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .detail-product-info h4 {
+            margin-bottom: 6px;
+        }
+
+        .detail-product-info p {
+            color: #94a3b8;
+            font-size: 13px;
+            margin: 4px 0;
+        }
+
+        .detail-product-price {
+            color: #22d3ee;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .modal-total {
+            margin-top: 18px;
+            padding: 18px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .modal-total span:last-child {
+            color: #22d3ee;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            flex: 1;
+            border: 0;
+            padding: 13px;
+            border-radius: 11px;
+            cursor: pointer;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .confirm-btn {
+            background: #16a34a;
+        }
+
+        .cancel-btn {
+            background: #dc2626;
+        }
+
+        .whatsapp-btn {
+            background: #128c7e;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .topbar-inner {
+                padding: 15px;
+            }
+
+            .dashboard-container {
+                padding: 20px 15px 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-card h2 {
+                font-size: 23px;
+            }
+
+            .order-main {
+                grid-template-columns: 1fr;
+            }
+
+            .order-total {
+                text-align: left;
+            }
+
+            .customer-row {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .detail-product {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .detail-product-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .detail-product-price {
+                grid-column: 2;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     LOGIN SECTION
+========================= -->
+
+<section id="loginSection">
+
+    <div class="login-box">
+
+        <div class="logo">
+            <div class="logo-icon">D</div>
+            <h1>Dream Shop</h1>
+            <p>Admin Dashboard</p>
+        </div>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Admin email"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                    required
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginButton"
+            >
+                🔐 Login to Dashboard
+            </button>
+
+            <div
+                id="loginError"
+                class="error-message"
+            ></div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DASHBOARD SECTION
+========================= -->
+
+<section
+    id="dashboardSection"
+    class="hidden"
+>
+
+    <header class="topbar">
+
+        <div class="topbar-inner">
+
+            <div class="brand">
+                <h1>Dream Shop</h1>
+                <p>Order Management Dashboard</p>
+            </div>
+
+            <button
+                class="logout-btn"
+                id="logoutButton"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="dashboard-container">
+
+        <!-- STATS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="icon">📦</div>
+                <p>Total Orders</p>
+                <h2 id="totalOrders">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">⏳</div>
+                <p>Pending</p>
+                <h2 id="pendingOrders">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">✅</div>
+                <p>Confirmed</p>
+                <h2 id="confirmedOrders">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <div class="icon">❌</div>
+                <p>Cancelled</p>
+                <h2 id="cancelledOrders">0</h2>
+            </div>
+
+        </div>
+
+
+        <!-- ORDERS -->
+
+        <div class="orders-header">
+
+            <h2>📋 Orders</h2>
+
+            <button
+                class="refresh-btn"
+                id="refreshButton"
+            >
+                🔄 Refresh
+            </button>
+
+        </div>
+
+
+        <div
+            id="ordersContainer"
+            class="orders-grid"
+        >
+            <div class="loading">
+                Loading orders...
+            </div>
+        </div>
+
+    </main>
+
+</section>
+
+
+<!-- =========================
+     ORDER DETAILS MODAL
+========================= -->
+
+<div
+    id="orderModal"
+    class="modal-overlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Order Details
+            </h2>
+
+            <button
+                class="close-modal"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div
+            id="modalBody"
+            class="modal-body"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    // ========================================
+    // SUPABASE CONFIG
+    // ========================================
+
+    const SUPABASE_URL =
+        "https://lwnisnbsfqqmrifujnbw.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_G2Lrr0dofsmmEWqJACdXrw_GuRHwitt";
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    // ========================================
+    // ELEMENTS
+    // ========================================
+
+    const loginSection =
+        document.getElementById("loginSection");
+
+    const dashboardSection =
+        document.getElementById("dashboardSection");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const loginError =
+        document.getElementById("loginError");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+    const ordersContainer =
+        document.getElementById("ordersContainer");
+
+    const refreshButton =
+        document.getElementById("refreshButton");
+
+    const orderModal =
+        document.getElementById("orderModal");
+
+    const closeModal =
+        document.getElementById("closeModal");
+
+    const modalBody =
+        document.getElementById("modalBody");
+
+
+    // ========================================
+    // FORMAT
+    // ========================================
+
+    function formatPrice(price) {
+
+        return Number(price || 0)
+            .toLocaleString("en-BD");
+
+    }
+
+
+    function formatDate(date) {
+
+        if (!date) return "N/A";
+
+        return new Date(date).toLocaleString(
+            "en-BD",
+            {
+                dateStyle: "medium",
+                timeStyle: "short"
+            }
+        );
+
+    }
+
+
+    function escapeHtml(value) {
+
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    // ========================================
+    // STATUS
+    // ========================================
+
+    function statusClass(status) {
+
+        if (status === "confirmed") {
+            return "status-confirmed";
+        }
+
+        if (status === "cancelled") {
+            return "status-cancelled";
+        }
+
+        return "status-pending";
+
+    }
+
+
+    // ========================================
+    // LOGIN
+    // ========================================
+
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+            loginError.textContent = "";
+
+            loginButton.disabled = true;
+
+            loginButton.textContent =
+                "⏳ Logging in...";
+
+
+            const email =
+                document
+                    .getElementById("loginEmail")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("loginPassword")
+                    .value;
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+
+            if (error) {
+
+                loginError.textContent =
+                    "❌ " + error.message;
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "🔐 Login to Dashboard";
+
+                return;
+            }
+
+
+            if (data.session) {
+
+                showDashboard();
+
+            }
+
+        }
+    );
+
+
+    // ========================================
+    // CHECK SESSION
+    // ========================================
+
+    async function checkSession() {
+
+        const {
+            data
+        } =
+            await supabaseClient.auth.getSession();
+
+
+        if (data.session) {
+
+            showDashboard();
+
+        } else {
+
+            showLogin();
+
+        }
+
+    }
+
+
+    // ========================================
+    // SHOW LOGIN
+    // ========================================
+
+    function showLogin() {
+
+        loginSection.classList.remove("hidden");
+
+        dashboardSection.classList.add("hidden");
+
+    }
+
+
+    // ========================================
+    // SHOW DASHBOARD
+    // ========================================
+
+    async function showDashboard() {
+
+        loginSection.classList.add("hidden");
+
+        dashboardSection.classList.remove("hidden");
+
+        await loadOrders();
+
+    }
+
+
+    // ========================================
+    // LOAD ORDERS
+    // ========================================
+
+    async function loadOrders() {
+
+        ordersContainer.innerHTML = `
+            <div class="loading">
+                ⏳ Loading orders...
+            </div>
+        `;
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("orders")
+                .select("*")
+                .order("created_at", {
+                    ascending: false
+                });
+
+
+        if (error) {
+
+            console.error(error);
+
+            ordersContainer.innerHTML = `
+                <div class="empty-orders">
+                    <h3>❌ Could not load orders</h3>
+                    <p style="margin-top:10px;">
+                        ${escapeHtml(error.message)}
+                    </p>
+                </div>
+            `;
+
+            return;
+        }
+
+
+        const orders = data || [];
+
+        updateStats(orders);
+
+        renderOrders(orders);
+
+    }
+
+
+    // ========================================
+    // UPDATE STATS
+    // ========================================
+
+    function updateStats(orders) {
+
+        const total =
+            orders.length;
+
+        const pending =
+            orders.filter(
+                order => order.status === "pending"
+            ).length;
+
+        const confirmed =
+            orders.filter(
+                order => order.status === "confirmed"
+            ).length;
+
+        const cancelled =
+            orders.filter(
+                order => order.status === "cancelled"
+            ).length;
+
+
+        document.getElementById("totalOrders")
+            .textContent = total;
+
+        document.getElementById("pendingOrders")
+            .textContent = pending;
+
+        document.getElementById("confirmedOrders")
+            .textContent = confirmed;
+
+        document.getElementById("cancelledOrders")
+            .textContent = cancelled;
+
+    }
+
+
+    // ========================================
+    // RENDER ORDERS
+    // ========================================
+
+    function renderOrders(orders) {
+
+        if (orders.length === 0) {
+
+            ordersContainer.innerHTML = `
+                <div class="empty-orders">
+                    <h3>📦 No Orders Yet</h3>
+                    <p style="margin-top:10px;">
+                        New customer orders will appear here.
+                    </p>
+                </div>
+            `;
+
+            return;
+        }
+
+
+        ordersContainer.innerHTML =
+            orders.map(order => {
+
+                let items = [];
+
+                try {
+
+                    items =
+                        typeof order.items === "string"
+                            ? JSON.parse(order.items)
+                            : (order.items || []);
+
+                } catch (error) {
+
+                    items = [];
+
+                }
+
+
+                const preview =
+                    items.slice(0, 5).map(item => {
+
+                        return `
+                            <div class="product-preview-item">
+                                <img
+                                    src="${escapeHtml(item.image || getProductImage(item.product_id, item.name))}"
+                                    alt="${escapeHtml(item.name || "Product")}"
+                                    onerror="this.style.display='none'"
+                                >
+                            </div>
+                        `;
+
+                    }).join("");
+
+
+                return `
+                    <div
+                        class="order-card"
+                        onclick="openOrderDetails(${Number(order.id)})"
+                    >
+
+                        <div class="order-main">
+
+                            <div class="order-info">
+
+                                <div class="order-id">
+                                    ORDER #${Number(order.id)}
+                                </div>
+
+                                <h3>
+                                    ${escapeHtml(order.customer_name)}
+                                </h3>
+
+                                <p>
+                                    📞 ${escapeHtml(order.customer_phone)}
+                                </p>
+
+                                <p>
+                                    📍 ${escapeHtml(order.customer_district)}
+                                </p>
+
+                                <p>
+                                    🕐 ${formatDate(order.created_at)}
+                                </p>
+
+                                <span
+                                    class="status ${statusClass(order.status)}"
+                                >
+                                    ${escapeHtml(order.status || "pending")}
+                                </span>
+
+                            </div>
+
+
+                            <div class="order-total">
+
+                                <strong>
+                                    ৳${formatPrice(order.total_amount)}
+                                </strong>
+
+                                <small>
+                                    ${Number(order.total_items || 0)} item(s)
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="product-preview">
+
+                            ${preview || `
+                                <span style="color:#64748b;font-size:13px;">
+                                    Product image unavailable
+                                </span>
+                            `}
+
+                        </div>
+
+                    </div>
+                `;
+
+            }).join("");
+
+    }
+
+
+    // ========================================
+    // PRODUCT IMAGE HELPER
+    // ========================================
+
+    function getProductImage(productId, productName) {
+
+        const imageMap = {
+
+            "earbuds":
+                "images/earbuds.png",
+
+            "smart-watch":
+                "images/smart-watch.png",
+
+            "power-bank":
+                "images/power-bank.png",
+
+            "projector":
+                "images/projector.png",
+
+            "selfie-stick":
+                "images/selfie-stick.png",
+
+            "neckband":
+                "images/neckband.png"
+
+        };
+
+
+        if (productId && imageMap[productId]) {
+
+            return imageMap[productId];
+
+        }
+
+
+        const name =
+            String(productName || "")
+                .toLowerCase();
+
+
+        if (name.includes("earbud")) {
+            return "images/earbuds.png";
+        }
+
+        if (name.includes("watch")) {
+            return "images/smart-watch.png";
+        }
+
+        if (name.includes("power")) {
+            return "images/power-bank.png";
+        }
+
+        if (name.includes("projector")) {
+            return "images/projector.png";
+        }
+
+        if (name.includes("selfie")) {
+            return "images/selfie-stick.png";
+        }
+
+        if (name.includes("neckband")) {
+            return "images/neckband.png";
+        }
+
+
+        return "";
+    }
+
+
+    // ========================================
+    // OPEN ORDER DETAILS
+    // ========================================
+
+    window.openOrderDetails =
+        async function(orderId) {
+
+            const {
+                data: order,
+                error
+            } =
+                await supabaseClient
+                    .from("orders")
+                    .select("*")
+                    .eq("id", orderId)
+                    .single();
+
+
+            if (error || !order) {
+
+                alert(
+                    "❌ Could not load order details."
+                );
+
+                return;
+            }
+
+
+            let items = [];
+
+            try {
+
+                items =
+                    typeof order.items === "string"
+                        ? JSON.parse(order.items)
+                        : (order.items || []);
+
+            } catch (error) {
+
+                items = [];
+
+            }
+
+
+            document.getElementById("modalTitle")
+                .textContent =
+                "Order #" + order.id;
+
+
+            const productsHtml =
+                items.length
+                    ? items.map(item => {
+
+                        const image =
+                            item.image ||
+                            getProductImage(
+                                item.product_id,
+                                item.name
+                            );
+
+
+                        return `
+                            <div class="detail-product">
+
+                                <div class="detail-product-image">
+
+                                    <img
+                                        src="${escapeHtml(image)}"
+                                        alt="${escapeHtml(item.name)}"
+                                        onerror="this.style.display='none'"
+                                    >
+
+                                </div>
+
+
+                                <div class="detail-product-info">
+
+                                    <h4>
+                                        ${escapeHtml(item.name)}
+                                    </h4>
+
+                                    <p>
+                                        Quantity:
+                                        ${Number(item.quantity || 0)}
+                                    </p>
+
+                                    <p>
+                                        Unit Price:
+                                        ৳${formatPrice(item.price)}
+                                    </p>
+
+                                </div>
+
+
+                                <div class="detail-product-price">
+
+                                    ৳${formatPrice(
+                                        item.subtotal ||
+                                        (
+                                            Number(item.price || 0) *
+                                            Number(item.quantity || 0)
+                                        )
+                                    )}
+
+                                </div>
+
+                            </div>
+                        `;
+
+                    }).join("")
+
+                    : `
+                        <p style="color:#94a3b8;">
+                            No product details found.
+                        </p>
+                    `;
+
+
+            modalBody.innerHTML = `
+
+                <div class="customer-box">
+
+                    <h3>👤 Customer Information</h3>
+
+                    <div class="customer-row">
+                        <span>Name</span>
+                        <span>
+                            ${escapeHtml(order.customer_name)}
+                        </span>
+                    </div>
+
+                    <div class="customer-row">
+                        <span>Phone</span>
+                        <span>
+                            ${escapeHtml(order.customer_phone)}
+                        </span>
+                    </div>
+
+                    <div class="customer-row">
+                        <span>District</span>
+                        <span>
+                            ${escapeHtml(order.customer_district)}
+                        </span>
+                    </div>
+
+                    <div class="customer-row">
+                        <span>Address</span>
+                        <span>
+                            ${escapeHtml(order.customer_address)}
+                        </span>
+                    </div>
+
+                    <div class="customer-row">
+                        <span>Order Date</span>
+                        <span>
+                            ${formatDate(order.created_at)}
+                        </span>
+                    </div>
+
+                    <div class="customer-row">
+                        <span>Status</span>
+                        <span>
+                            <span class="status ${statusClass(order.status)}">
+                                ${escapeHtml(order.status || "pending")}
+                            </span>
+                        </span>
+                    </div>
+
+                    ${
+                        order.customer_note
+                        ? `
+                            <div class="customer-row">
+                                <span>Note</span>
+                                <span>
+                                    ${escapeHtml(order.customer_note)}
+                                </span>
+                            </div>
+                        `
+                        : ""
+                    }
+
+                </div>
+
+
+                <div class="modal-products">
+
+                    <h3>📦 Products</h3>
+
+                    ${productsHtml}
+
+                </div>
+
+
+                <div class="modal-total">
+
+                    <span>Total</span>
+
+                    <span>
+                        ৳${formatPrice(order.total_amount)}
+                    </span>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        class="action-btn confirm-btn"
+                        onclick="updateOrderStatus(${Number(order.id)}, 'confirmed')"
+                    >
+                        ✅ Confirm
+                    </button>
+
+                    <button
+                        class="action-btn cancel-btn"
+                        onclick="updateOrderStatus(${Number(order.id)}, 'cancelled')"
+                    >
+                        ❌ Cancel
+                    </button>
+
+                    <button
+                        class="action-btn whatsapp-btn"
+                        onclick="contactCustomer('${escapeHtml(order.customer_phone)}', '${Number(order.id)}')"
+                    >
+                        📱 WhatsApp
+                    </button>
+
+                </div>
+
+            `;
+
+
+            orderModal.classList.add("active");
+
+        };
+
+
+    // ========================================
+    // UPDATE ORDER STATUS
+    // ========================================
+
+    window.updateOrderStatus =
+        async function(orderId, status) {
+
+            const confirmText =
+                status === "confirmed"
+                    ? "Confirm this order?"
+                    : "Cancel this order?";
+
+
+            if (!confirm(confirmText)) {
+                return;
+            }
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from("orders")
+                    .update({
+                        status: status
+                    })
+                    .eq("id", orderId);
+
+
+            if (error) {
+
+                alert(
+                    "❌ Could not update order."
+                );
+
+                console.error(error);
+
+                return;
+            }
+
+
+            alert(
+                status === "confirmed"
+                    ? "✅ Order confirmed."
+                    : "❌ Order cancelled."
+            );
+
+
+            closeOrderModal();
+
+            await loadOrders();
+
+        };
+
+
+    // ========================================
+    // WHATSAPP
+    // ========================================
+
+    window.contactCustomer =
+        function(phone, orderId) {
+
+            let cleanPhone =
+                String(phone)
+                    .replace(/\D/g, "");
+
+
+            if (cleanPhone.startsWith("01")) {
+
+                cleanPhone =
+                    "88" + cleanPhone;
+
+            }
+
+
+            const message =
+                encodeURIComponent(
+                    "Hello, this is Dream Shop regarding your Order #" +
+                    orderId
+                );
+
+
+            window.open(
+                "https://wa.me/" +
+                cleanPhone +
+                "?text=" +
+                message,
+                "_blank"
+            );
+
+        };
+
+
+    // ========================================
+    // CLOSE MODAL
+    // ========================================
+
+    function closeOrderModal() {
+
+        orderModal.classList.remove("active");
+
+    }
+
+
+    closeModal.addEventListener(
+        "click",
+        closeOrderModal
+    );
+
+
+    orderModal.addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === orderModal) {
+
+                closeOrderModal();
+
+            }
+
+        }
+    );
+
+
+    // ========================================
+    // LOGOUT
+    // ========================================
+
+    logoutButton.addEventListener(
+        "click",
+        async function() {
+
+            await supabaseClient.auth.signOut();
+
+            showLogin();
+
+        }
+    );
+
+
+    // ========================================
+    // REFRESH
+    // ========================================
+
+    refreshButton.addEventListener(
+        "click",
+        loadOrders
+    );
+
+
+    // ========================================
+    // START
+    // ========================================
+
+    checkSession();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Dream Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🛒</span>
+                <span>
+                    <strong>Dream Shop</strong>
+                    <small>Smart Gadgets • Better Life</small>
+                </span>
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Products</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#deals">Deals</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                    <button id="searchButton" type="button">🔍</button>
+                </div>
+
+                <a href="cart.html" class="icon-button" title="Shopping Cart">
+                    🛒
+                    <span id="cartCount">0</span>
+                </a>
+
+                <button class="menu-toggle" id="menuToggle" type="button">
+                    ☰
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- Product Details -->
+    <main>
+
+        <section class="section product-details-page">
+
+            <div class="container">
+
+                <div class="product-details-wrapper">
+
+                    <!-- Product Image -->
+                    <div class="product-details-image">
+                        <img id="productImage" src="" alt="Product">
+                    </div>
+
+
+                    <!-- Product Information -->
+                    <div class="product-details-info">
+
+                        <span class="product-badge">Premium Gadget</span>
+
+                        <h1 id="productName">Product Name</h1>
+
+                        <div class="product-details-price" id="productPrice">
+                            ৳0
+                        </div>
+
+                        <p class="product-details-description" id="productDescription">
+                            Product description will appear here.
+                        </p>
+
+
+                        <!-- Features -->
+                        <div class="product-features-box">
+
+                            <h3>Key Features</h3>
+
+                            <ul id="productFeatures">
+                                <!-- Features will be added by JavaScript -->
+                            </ul>
+
+                        </div>
+
+
+                        <!-- Quantity -->
+                        <div class="product-quantity-box">
+
+                            <label for="quantity">Quantity</label>
+
+                            <div class="quantity-selector">
+
+                                <button type="button" id="decreaseQuantity">
+                                    −
+                                </button>
+
+                                <input
+                                    type="number"
+                                    id="quantity"
+                                    value="1"
+                                    min="1"
+                                    max="20"
+                                >
+
+                                <button type="button" id="increaseQuantity">
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Action Buttons -->
+                        <div class="product-action-buttons">
+
+                            <!-- BUY NOW FIRST -->
+                            <button
+                                type="button"
+                                id="buyNowButton"
+                                class="btn btn-primary"
+                            >
+                                ⚡ Buy Now
+                            </button>
+
+                            <!-- ADD TO CART SECOND -->
+                            <button
+                                type="button"
+                                id="detailsAddCart"
+                                class="btn btn-outline"
+                            >
+                                🛒 Add to Cart
+                            </button>
+
+                        </div>
+
+
+                        <!-- Back Button -->
+                        <a
+                            href="index.html#products"
+                            class="back-to-products"
+                        >
+                            ← Back to Products
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+                    <h3>Dream Shop</h3>
+                    <p>Smart Gadgets • Better Life</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#products">Products</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Dream Shop. All Rights Reserved.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
