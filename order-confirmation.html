@@ -1,155 +1,1316 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Order Confirmed - Dream Shop</title>
+    <title>Order Placed | Dream Shop</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --blue: #2563eb;
+            --cyan: #06b6d4;
+            --green: #22c55e;
+            --dark: #07111f;
+            --white: #ffffff;
+            --muted: #94a3b8;
+        }
+
+        html,
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f4f8ff, #eaf2ff);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            color: #14213d;
-        }
-
-        .container {
             width: 100%;
-            max-width: 600px;
-            background: white;
-            border-radius: 24px;
-            padding: 45px 30px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 60, 150, 0.12);
+            min-height: 100%;
         }
 
-        .success-icon {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 25px;
+        body {
+            min-height: 100vh;
+
+            font-family:
+                Inter,
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--white);
+
+            overflow-x: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(37, 99, 235, 0.35),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(6, 182, 212, 0.25),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(37, 99, 235, 0.25),
+                    transparent 38%
+                ),
+                #050b16;
+        }
+
+        /* =====================================================
+           PREMIUM BACKGROUND
+        ===================================================== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+            z-index: 0;
+        }
+
+        .glow {
+            position: absolute;
+
             border-radius: 50%;
-            background: #e8fff2;
-            color: #16a34a;
+
+            filter: blur(80px);
+
+            opacity: 0.35;
+
+            animation: floatGlow 10s ease-in-out infinite;
+        }
+
+        .glow-one {
+            width: 300px;
+            height: 300px;
+
+            background: #2563eb;
+
+            top: -100px;
+            left: -80px;
+        }
+
+        .glow-two {
+            width: 260px;
+            height: 260px;
+
+            background: #06b6d4;
+
+            right: -80px;
+            top: 25%;
+
+            animation-delay: 2s;
+        }
+
+        .glow-three {
+            width: 320px;
+            height: 320px;
+
+            background: #1d4ed8;
+
+            bottom: -180px;
+            left: 40%;
+
+            animation-delay: 4s;
+        }
+
+        @keyframes floatGlow {
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+                transform: translate3d(25px, -20px, 0);
+            }
+        }
+
+        .grid {
+            position: absolute;
+            inset: 0;
+
+            opacity: 0.035;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 1) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 1) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+        }
+
+        /* =====================================================
+           FULL SCREEN
+        ===================================================== */
+
+        .page {
+            position: relative;
+
+            z-index: 2;
+
+            width: 100%;
+
+            min-height: 100vh;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            font-size: 48px;
-            font-weight: bold;
+
+            padding: 35px 20px;
         }
 
-        h1 {
-            font-size: 32px;
-            margin-bottom: 12px;
-            color: #0f172a;
+        /* =====================================================
+           MAIN CARD
+        ===================================================== */
+
+        .confirmation-card {
+
+            width: 100%;
+
+            max-width: 590px;
+
+            padding: 42px 38px 30px;
+
+            text-align: center;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.105),
+                    rgba(255, 255, 255, 0.045)
+                );
+
+            border:
+                1px solid rgba(255, 255, 255, 0.13);
+
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.42),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+            backdrop-filter: blur(24px);
+
+            -webkit-backdrop-filter: blur(24px);
+
+            animation:
+                cardAppear 0.8s cubic-bezier(.2,.8,.2,1);
         }
 
-        .subtitle {
-            font-size: 17px;
-            line-height: 1.6;
-            color: #64748b;
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
+
+        .brand {
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 4px;
+
+            color:
+                rgba(255, 255, 255, 0.72);
+
             margin-bottom: 30px;
         }
 
-        .thank-you {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
+        .brand span {
+            color: #38bdf8;
+        }
+
+        /* =====================================================
+           SUCCESS ICON
+        ===================================================== */
+
+        .success-area {
+
+            position: relative;
+
+            width: 108px;
+            height: 108px;
+
+            margin: 0 auto 25px;
+        }
+
+        .success-ring {
+
+            position: absolute;
+
+            inset: 0;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(34, 197, 94, 0.35);
+
+            animation:
+                ringPulse 2.2s infinite;
+        }
+
+        .success-ring:nth-child(2) {
+
+            inset: -9px;
+
+            opacity: 0.35;
+
+            animation-delay: 0.4s;
+        }
+
+        @keyframes ringPulse {
+
+            0% {
+                transform: scale(0.85);
+
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1.18);
+
+                opacity: 0;
+            }
+        }
+
+        .success-icon {
+
+            position: absolute;
+
+            inset: 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    #4ade80,
+                    #16a34a 65%,
+                    #15803d
+                );
+
+            color: white;
+
+            font-size: 48px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 12px 40px
+                rgba(34, 197, 94, 0.35),
+
+                inset 0 2px 3px
+                rgba(255, 255, 255, 0.25);
+
+            animation:
+                successPop 0.8s 0.15s both;
+        }
+
+        @keyframes successPop {
+
+            0% {
+                opacity: 0;
+
+                transform: scale(0.45);
+            }
+
+            70% {
+                transform: scale(1.08);
+            }
+
+            100% {
+                opacity: 1;
+
+                transform: scale(1);
+            }
+        }
+
+        /* =====================================================
+           ORDER PLACED LABEL
+        ===================================================== */
+
+        .eyebrow {
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            font-weight: 800;
+
+            color: #4ade80;
+
             margin-bottom: 12px;
         }
 
-        .info-box {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 20px;
-            margin: 25px 0;
-            color: #475569;
-            line-height: 1.7;
+        /* =====================================================
+           THANK YOU
+        ===================================================== */
+
+        .thank-you {
+
+            font-size: 38px;
+
+            line-height: 1.15;
+
+            font-weight: 800;
+
+            color: #ffffff;
+
+            margin-bottom: 8px;
+
+            background: none;
+
+            -webkit-background-clip: initial;
+
+            background-clip: initial;
+
+            -webkit-text-fill-color: #ffffff;
         }
 
-        .home-button {
-            display: inline-block;
-            text-decoration: none;
-            background: linear-gradient(135deg, #2563eb, #06b6d4);
-            color: white;
-            padding: 14px 30px;
-            border-radius: 12px;
+        /* =====================================================
+           ORDER CONFIRMED
+        ===================================================== */
+
+        h1 {
+
+            font-size: 17px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            font-weight: 700;
+
+            color: #93c5fd;
+
+            margin-bottom: 18px;
+        }
+
+        /* =====================================================
+           ORDER ID
+        ===================================================== */
+
+        .order-id {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 21px;
+
+            padding: 7px 12px;
+
+            border-radius: 8px;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            letter-spacing: 0.5px;
+        }
+
+        .order-id strong {
+
+            color: #cbd5e1;
+
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           DESCRIPTION
+        ===================================================== */
+
+        .subtitle {
+
+            max-width: 455px;
+
+            margin: 0 auto 22px;
+
+            font-size: 14px;
+
+            line-height: 1.75;
+
+            color: #a8b5c7;
+        }
+
+        /* =====================================================
+           CUSTOMER DETAILS
+        ===================================================== */
+
+        .customer-box {
+
+            text-align: left;
+
+            padding: 19px;
+
+            margin-bottom: 20px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+        }
+
+        .customer-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+        .customer-icon {
+
+            width: 34px;
+
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background:
+                rgba(37, 99, 235, 0.16);
+
+            border:
+                1px solid
+                rgba(96, 165, 250, 0.15);
+
             font-size: 16px;
-            font-weight: bold;
-            transition: 0.2s;
         }
 
-        .home-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+        .customer-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 9px 0;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.055);
+
+            font-size: 12px;
         }
+
+        .customer-row:last-child {
+            border-bottom: none;
+
+            padding-bottom: 0;
+        }
+
+        .customer-label {
+
+            color: #64748b;
+
+            flex-shrink: 0;
+        }
+
+        .customer-value {
+
+            color: #dbeafe;
+
+            text-align: right;
+
+            font-weight: 600;
+
+            word-break: break-word;
+        }
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 9px 15px;
+
+            margin-bottom: 22px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(34, 197, 94, 0.08);
+
+            border:
+                1px solid
+                rgba(34, 197, 94, 0.20);
+
+            color: #86efac;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .status-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #4ade80;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(74, 222, 128, 0.10);
+        }
+
+        /* =====================================================
+           INFO
+        ===================================================== */
+
+        .info-box {
+
+            text-align: left;
+
+            padding: 16px;
+
+            margin-bottom: 24px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.07);
+        }
+
+        .info-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+        .info-icon {
+
+            width: 32px;
+
+            height: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background:
+                rgba(37, 99, 235, 0.13);
+
+            font-size: 15px;
+        }
+
+        .info-text {
+
+            padding-left: 42px;
+
+            color: #7f8da1;
+
+            font-size: 12px;
+
+            line-height: 1.65;
+        }
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            justify-content: center;
+        }
+
+        .button {
+
+            min-height: 48px;
+
+            padding: 12px 20px;
+
+            border-radius: 13px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .primary-button {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #0891b2
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(37, 99, 235, 0.25);
+        }
+
+        .secondary-button {
+
+            color: #cbd5e1;
+
+            background:
+                rgba(255, 255, 255, 0.055);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.10);
+        }
+
+        .button:hover {
+
+            transform: translateY(-3px);
+        }
+
+        .primary-button:hover {
+
+            box-shadow:
+                0 15px 35px
+                rgba(37, 99, 235, 0.35);
+        }
+
+        .secondary-button:hover {
+
+            background:
+                rgba(255, 255, 255, 0.09);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
         .footer {
-            margin-top: 25px;
-            font-size: 13px;
-            color: #94a3b8;
+
+            margin-top: 27px;
+
+            padding-top: 17px;
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, 0.07);
+
+            color: #64748b;
+
+            font-size: 10px;
+
+            line-height: 1.8;
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 35px 20px;
+        .footer strong {
+
+            color: #94a3b8;
+
+            letter-spacing: 2px;
+
+            font-size: 10px;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 20px 13px;
             }
 
-            h1 {
-                font-size: 27px;
+            .confirmation-card {
+
+                padding: 32px 17px 23px;
+
+                border-radius: 24px;
+            }
+
+            .brand {
+
+                font-size: 11px;
+
+                letter-spacing: 3px;
+
+                margin-bottom: 25px;
+            }
+
+            .success-area {
+
+                width: 88px;
+
+                height: 88px;
+
+                margin-bottom: 22px;
+            }
+
+            .success-icon {
+
+                font-size: 39px;
             }
 
             .thank-you {
-                font-size: 21px;
+
+                font-size: 30px;
+            }
+
+            h1 {
+
+                font-size: 13px;
+
+                letter-spacing: 3px;
+            }
+
+            .order-id {
+
+                font-size: 10px;
+
+                margin-bottom: 18px;
+            }
+
+            .subtitle {
+
+                font-size: 12.5px;
+
+                line-height: 1.7;
+            }
+
+            .customer-box {
+
+                padding: 15px;
+            }
+
+            .customer-row {
+
+                font-size: 11px;
+
+                gap: 10px;
+            }
+
+            .customer-value {
+
+                max-width: 65%;
+            }
+
+            .status {
+
+                font-size: 11px;
+
+                padding: 8px 13px;
+            }
+
+            .buttons {
+
+                flex-direction: column;
+            }
+
+            .button {
+
+                width: 100%;
             }
         }
+
+        @media (max-width: 380px) {
+
+            .confirmation-card {
+
+                padding: 28px 14px 20px;
+            }
+
+            .thank-you {
+
+                font-size: 27px;
+            }
+
+            .customer-row {
+
+                font-size: 10.5px;
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <!-- PREMIUM BACKGROUND -->
 
-        <div class="success-icon">
-            ✓
-        </div>
+    <div class="background">
 
-        <div class="thank-you">
-            Thank You! ❤️
-        </div>
+        <div class="glow glow-one"></div>
 
-        <h1>Order Confirmed</h1>
+        <div class="glow glow-two"></div>
 
-        <p class="subtitle">
-            Your order has been successfully placed.
-            We will contact you soon to confirm your order.
-        </p>
+        <div class="glow glow-three"></div>
 
-        <div class="info-box">
-            📦 <strong>Your order is being processed.</strong><br>
-            Please keep your phone available for our delivery team.
-        </div>
-
-        <a href="index.html" class="home-button">
-            🏠 Continue Shopping
-        </a>
-
-        <div class="footer">
-            © 2026 Dream Shop — Smart Gadgets • Better Life
-        </div>
+        <div class="grid"></div>
 
     </div>
 
+
+    <!-- FULL SCREEN -->
+
+    <main class="page">
+
+        <section class="confirmation-card">
+
+            <!-- BRAND -->
+
+            <div class="brand">
+                DREAM<span>SHOP</span>
+            </div>
+
+
+            <!-- SUCCESS -->
+
+            <div class="success-area">
+
+                <div class="success-ring"></div>
+
+                <div class="success-ring"></div>
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <!-- ORDER PLACED -->
+
+            <div class="eyebrow">
+                ORDER PLACED
+            </div>
+
+
+            <!-- THANK YOU -->
+
+            <div class="thank-you">
+                Thank You! ✨
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1>
+                Order Confirmed
+            </h1>
+
+
+            <!-- ORDER ID -->
+
+            <div class="order-id">
+
+                <span>Order ID</span>
+
+                <strong id="orderId">
+                    #DS-000000
+                </strong>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <p class="subtitle">
+
+                Your order has been successfully placed.
+                Thank you for choosing Dream Shop.
+                Please check the information below
+                to confirm your order details.
+
+            </p>
+
+
+            <!-- CUSTOMER DETAILS -->
+
+            <div class="customer-box">
+
+                <div class="customer-title">
+
+                    <div class="customer-icon">
+                        👤
+                    </div>
+
+                    Your Order Details
+
+                </div>
+
+
+                <div class="customer-row">
+
+                    <span class="customer-label">
+                        Full Name
+                    </span>
+
+                    <span
+                        class="customer-value"
+                        id="customerName"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="customer-row">
+
+                    <span class="customer-label">
+                        Phone
+                    </span>
+
+                    <span
+                        class="customer-value"
+                        id="customerPhone"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="customer-row">
+
+                    <span class="customer-label">
+                        Address
+                    </span>
+
+                    <span
+                        class="customer-value"
+                        id="customerAddress"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                Order Successfully Confirmed
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="info-box">
+
+                <div class="info-title">
+
+                    <div class="info-icon">
+                        📦
+                    </div>
+
+                    Your order is being processed
+
+                </div>
+
+                <div class="info-text">
+
+                    Please keep your phone available.
+                    Our team may contact you shortly
+                    regarding your order and delivery.
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+                <a
+                    href="index.html"
+                    class="button primary-button"
+                >
+                    🏠 Continue Shopping
+                </a>
+
+
+                <a
+                    href="cart.html"
+                    class="button secondary-button"
+                >
+                    🛒 View Cart
+                </a>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="footer">
+
+                <strong>
+                    A BRAND BY SHOYAIB
+                </strong>
+
+                <br>
+
+                © 2026 Dream Shop — Smart Gadgets • Better Life
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         LOAD ORDER INFORMATION
+    ===================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            let orderData = null;
+
+            try {
+
+                const savedOrder =
+                    localStorage.getItem(
+                        "dreamShopLastOrder"
+                    );
+
+                if (savedOrder) {
+
+                    orderData =
+                        JSON.parse(savedOrder);
+
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "Order information could not be loaded."
+                );
+
+            }
+
+
+            if (!orderData) {
+                return;
+            }
+
+
+            /* =========================
+               ORDER ID
+            ========================= */
+
+            const orderId =
+                orderData.orderId ||
+                orderData.order_id ||
+                orderData.id ||
+                orderData.orderID;
+
+
+            if (orderId) {
+
+                document.getElementById(
+                    "orderId"
+                ).textContent =
+                    "#" + orderId;
+
+            }
+
+
+            /* =========================
+               CUSTOMER NAME
+            ========================= */
+
+            const customerName =
+                orderData.name ||
+                orderData.fullName ||
+                orderData.full_name ||
+                orderData.customerName ||
+                orderData.customer_name ||
+                "";
+
+
+            if (customerName) {
+
+                document.getElementById(
+                    "customerName"
+                ).textContent =
+                    customerName;
+
+            }
+
+
+            /* =========================
+               CUSTOMER PHONE
+            ========================= */
+
+            const customerPhone =
+                orderData.phone ||
+                orderData.mobile ||
+                orderData.customerPhone ||
+                orderData.customer_phone ||
+                "";
+
+
+            if (customerPhone) {
+
+                document.getElementById(
+                    "customerPhone"
+                ).textContent =
+                    customerPhone;
+
+            }
+
+
+            /* =========================
+               CUSTOMER ADDRESS
+            ========================= */
+
+            const customerAddress =
+                orderData.address ||
+                orderData.fullAddress ||
+                orderData.full_address ||
+                orderData.customerAddress ||
+                orderData.customer_address ||
+                "";
+
+
+            if (customerAddress) {
+
+                document.getElementById(
+                    "customerAddress"
+                ).textContent =
+                    customerAddress;
+
+            }
+
+        });
+
+    </script>
+
 </body>
 </html>
+```
