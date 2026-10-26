@@ -1,106 +1,258 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dream Shop | Smart Gadgets • Better Life</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="description" content="Dream Shop - Smart gadgets and modern electronics for a better life.">
-    <meta name="keywords" content="Dream Shop, smart gadgets, electronics, gadgets Bangladesh">
+    <meta
+        name="description"
+        content="Dream Shop - Premium smart gadgets and modern electronics for a better life."
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="keywords"
+        content="Dream Shop, gadgets Bangladesh, smart gadgets, electronics, earbuds, smart watch, power bank"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0f19"
+    >
+
+    <title>
+        Dream Shop | Smart Gadgets • Better Life
+    </title>
+
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-<!-- =========================================
+
+<!-- =====================================================
      HEADER
-========================================= -->
+     ===================================================== -->
 
-<header class="header">
+<header class="site-header">
 
-    <div class="container header-content">
+    <div class="container header-inner">
 
-        <a href="#home" class="logo">
-            DREAM<span>SHOP</span>
+
+        <!-- Logo -->
+
+        <a
+            href="index.html"
+            class="brand"
+            aria-label="Dream Shop Home"
+        >
+
+            <span class="brand-mark">
+                D
+            </span>
+
+            <span class="brand-text">
+
+                <strong>
+                    DREAM<span>SHOP</span>
+                </strong>
+
+                <small>
+                    SMART GADGETS • BETTER LIFE
+                </small>
+
+            </span>
+
         </a>
 
-        <nav class="navigation">
 
-            <a href="#home">Home</a>
-            <a href="#products">Products</a>
-            <a href="#deals">Deals</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+        <!-- Desktop Navigation -->
+
+        <nav
+            class="nav-menu"
+            id="navMenu"
+        >
+
+            <a
+                href="#home"
+                class="active"
+            >
+                Home
+            </a>
+
+            <a href="#products">
+                Products
+            </a>
+
+            <a href="#deals">
+                Deals
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
 
         </nav>
 
+
+        <!-- Header Actions -->
+
         <div class="header-actions">
 
-            <div class="search-box">
+
+            <!-- Search -->
+
+            <div class="header-search">
 
                 <input
-                    type="text"
+                    type="search"
                     id="searchInput"
                     placeholder="Search gadgets..."
+                    autocomplete="off"
                 >
 
-                <button id="searchButton">
+                <button
+                    type="button"
+                    id="searchButton"
+                    aria-label="Search"
+                >
                     🔍
                 </button>
 
             </div>
 
-            <button class="icon-button" title="Wishlist">
+
+            <!-- Wishlist -->
+
+            <button
+                type="button"
+                class="icon-button"
+                aria-label="Wishlist"
+                title="Wishlist"
+            >
                 ♡
             </button>
 
+
+            <!-- Cart -->
+
             <a
                 href="cart.html"
-                class="icon-button"
-                title="Shopping Cart"
+                class="cart-button"
+                aria-label="Shopping Cart"
             >
+
                 🛒
-                <span class="cart-count">0</span>
+
+                <span
+                    class="cart-count"
+                    id="cartCount"
+                >
+                    0
+                </span>
+
             </a>
 
-        </div>
 
-        <button
-            class="mobile-menu-button"
-            id="mobileMenuButton"
-            title="Menu"
-        >
-            ☰
-        </button>
+            <!-- Mobile Menu -->
+
+            <button
+                type="button"
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+        </div>
 
     </div>
 
 </header>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      HERO
-========================================= -->
+     ===================================================== -->
 
-<section class="hero" id="home">
+<main id="home">
 
-    <div class="container">
+
+<section class="hero-section">
+
+    <div class="hero-glow hero-glow-one"></div>
+
+    <div class="hero-glow hero-glow-two"></div>
+
+
+    <div class="container hero-grid">
+
+
+        <!-- Hero Content -->
 
         <div class="hero-content">
 
+
+            <div class="hero-badge">
+                ✦ PREMIUM GADGET COLLECTION
+            </div>
+
+
             <h1>
+
                 Upgrade Your
-                <span>Digital Life</span>
+                <span>Digital Life.</span>
+
             </h1>
 
+
             <p>
-                Discover smart gadgets, modern electronics,
-                and useful tech products designed to make
-                your everyday life easier.
+
+                Discover smart gadgets, modern electronics
+                and everyday tech essentials designed to
+                make your life easier, smarter and better.
+
             </p>
+
 
             <div class="hero-buttons">
 
@@ -108,16 +260,139 @@
                     href="#products"
                     class="btn btn-primary"
                 >
-                    Shop Now
+                    Explore Products
+                    <span>→</span>
                 </a>
 
                 <a
                     href="#deals"
-                    class="btn btn-outline"
+                    class="btn btn-secondary"
                 >
-                    View Deals
+                    View Today's Deals
                 </a>
 
+            </div>
+
+
+            <!-- Trust -->
+
+            <div class="hero-trust">
+
+                <div class="trust-item">
+
+                    <strong>
+                        100+
+                    </strong>
+
+                    <span>
+                        Happy Customers
+                    </span>
+
+                </div>
+
+
+                <div class="trust-divider"></div>
+
+
+                <div class="trust-item">
+
+                    <strong>
+                        Premium
+                    </strong>
+
+                    <span>
+                        Quality Products
+                    </span>
+
+                </div>
+
+
+                <div class="trust-divider"></div>
+
+
+                <div class="trust-item">
+
+                    <strong>
+                        Fast
+                    </strong>
+
+                    <span>
+                        Delivery
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Hero Visual -->
+
+        <div class="hero-visual">
+
+
+            <div class="hero-card">
+
+                <div class="hero-card-top">
+
+                    <span>
+                        FEATURED
+                    </span>
+
+                    <span>
+                        DREAM SHOP
+                    </span>
+
+                </div>
+
+
+                <div class="hero-product-orb">
+
+                    <div class="orb-ring"></div>
+
+                    <img
+                        src="images/earbuds.png"
+                        alt="Premium Wireless Earbuds"
+                    >
+
+                </div>
+
+
+                <div class="hero-card-bottom">
+
+                    <div>
+
+                        <small>
+                            PREMIUM PICK
+                        </small>
+
+                        <h3>
+                            Wireless Earbuds
+                        </h3>
+
+                    </div>
+
+                    <span class="hero-price">
+                        ৳1,850
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-chip chip-one">
+                ✦ Premium Quality
+            </div>
+
+            <div class="floating-chip chip-two">
+                ⚡ Fast Delivery
+            </div>
+
+            <div class="floating-chip chip-three">
+                ✓ Trusted Shop
             </div>
 
         </div>
@@ -127,21 +402,23 @@
 </section>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      FEATURES
-========================================= -->
+     ===================================================== -->
 
-<section class="features">
+<section class="feature-strip">
 
-    <div class="container">
+    <div class="container feature-grid">
 
-        <div class="features-grid">
 
-            <div class="feature-box">
+        <div class="feature-card">
 
-                <div class="icon">
-                    ✓
-                </div>
+            <div class="feature-icon">
+                ✦
+            </div>
+
+            <div>
 
                 <h3>
                     Quality Products
@@ -149,61 +426,69 @@
 
                 <p>
                     Carefully selected gadgets
-                    for our customers.
                 </p>
 
             </div>
 
+        </div>
 
-            <div class="feature-box">
 
-                <div class="icon">
-                    🚚
-                </div>
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <div>
 
                 <h3>
                     Fast Delivery
                 </h3>
 
                 <p>
-                    Quick and reliable delivery
-                    across Bangladesh.
+                    Quick and reliable service
                 </p>
 
             </div>
 
+        </div>
 
-            <div class="feature-box">
 
-                <div class="icon">
-                    💬
-                </div>
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ♡
+            </div>
+
+            <div>
 
                 <h3>
                     Customer Support
                 </h3>
 
                 <p>
-                    We're here to help whenever
-                    you need us.
+                    We're here when you need us
                 </p>
 
             </div>
 
+        </div>
 
-            <div class="feature-box">
 
-                <div class="icon">
-                    ↩
-                </div>
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ✓
+            </div>
+
+            <div>
 
                 <h3>
                     Easy Returns
                 </h3>
 
                 <p>
-                    Simple return policy for
-                    a better shopping experience.
+                    Shop with confidence
                 </p>
 
             </div>
@@ -215,131 +500,159 @@
 </section>
 
 
-<!-- =========================================
-     CATEGORIES
-========================================= -->
 
-<section class="section" id="categories">
+<!-- =====================================================
+     CATEGORIES
+     ===================================================== -->
+
+<section class="categories-section">
 
     <div class="container">
 
-        <div class="section-title">
 
-            <h2>
-                Shop by Category
-            </h2>
+        <div class="section-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    SHOP BY CATEGORY
+                </span>
+
+                <h2>
+                    Find What You Need
+                </h2>
+
+            </div>
 
             <p>
-                Find the right gadget for your needs.
+                Explore our collection of modern
+                gadgets and everyday tech.
             </p>
 
         </div>
 
 
-        <div class="categories-grid">
+        <div class="category-grid">
 
-            <div class="category-card">
 
-                <div class="category-icon">
+            <a
+                href="#products"
+                class="category-card"
+            >
+
+                <span class="category-icon">
                     🎧
-                </div>
+                </span>
 
-                <h3>
+                <strong>
                     Audio
-                </h3>
+                </strong>
 
-            </div>
+                <small>
+                    Earbuds & Neckbands
+                </small>
+
+            </a>
 
 
-            <div class="category-card">
+            <a
+                href="#products"
+                class="category-card"
+            >
 
-                <div class="category-icon">
+                <span class="category-icon">
                     ⌚
-                </div>
+                </span>
 
-                <h3>
+                <strong>
                     Smart Watch
-                </h3>
+                </strong>
 
-            </div>
+                <small>
+                    Smart Wearables
+                </small>
+
+            </a>
 
 
-            <div class="category-card">
+            <a
+                href="#products"
+                class="category-card"
+            >
 
-                <div class="category-icon">
+                <span class="category-icon">
                     🔋
-                </div>
+                </span>
 
-                <h3>
+                <strong>
                     Power Bank
-                </h3>
+                </strong>
 
-            </div>
+                <small>
+                    Power & Charging
+                </small>
+
+            </a>
 
 
-            <div class="category-card">
+            <a
+                href="#products"
+                class="category-card"
+            >
 
-                <div class="category-icon">
+                <span class="category-icon">
+                    📽️
+                </span>
+
+                <strong>
+                    Projector
+                </strong>
+
+                <small>
+                    Home Entertainment
+                </small>
+
+            </a>
+
+
+            <a
+                href="#products"
+                class="category-card"
+            >
+
+                <span class="category-icon">
                     📱
-                </div>
+                </span>
 
-                <h3>
+                <strong>
                     Accessories
-                </h3>
+                </strong>
 
-            </div>
+                <small>
+                    Mobile Essentials
+                </small>
 
-
-            <div class="category-card">
-
-                <div class="category-icon">
-                    📷
-                </div>
-
-                <h3>
-                    Camera & Tripod
-                </h3>
-
-            </div>
+            </a>
 
 
-            <div class="category-card">
+            <a
+                href="#products"
+                class="category-card"
+            >
 
-                <div class="category-icon">
-                    🏠
-                </div>
+                <span class="category-icon">
+                    ⚙️
+                </span>
 
-                <h3>
-                    Smart Home
-                </h3>
-
-            </div>
-
-
-            <div class="category-card">
-
-                <div class="category-icon">
-                    💡
-                </div>
-
-                <h3>
+                <strong>
                     Smart Gadgets
-                </h3>
+                </strong>
 
-            </div>
+                <small>
+                    Modern Technology
+                </small>
 
-
-            <div class="category-card">
-
-                <div class="category-icon">
-                    ⚡
-                </div>
-
-                <h3>
-                    Electronics
-                </h3>
-
-            </div>
+            </a>
 
         </div>
 
@@ -348,25 +661,35 @@
 </section>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      PRODUCTS
-========================================= -->
+     ===================================================== -->
 
 <section
-    class="section products"
+    class="products-section"
     id="products"
 >
 
     <div class="container">
 
-        <div class="section-title">
 
-            <h2>
-                Featured Products
-            </h2>
+        <div class="section-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    OUR COLLECTION
+                </span>
+
+                <h2>
+                    Premium Products
+                </h2>
+
+            </div>
 
             <p>
-                Popular gadgets from Dream Shop.
+                Smart choices for a smarter lifestyle.
             </p>
 
         </div>
@@ -375,11 +698,18 @@
         <div class="product-grid">
 
 
-            <!-- PRODUCT 1 -->
+            <!-- Product 1 -->
 
-            <div class="product-card">
+            <article
+                class="product-card"
+                data-product-id="earbuds"
+            >
 
                 <div class="product-image">
+
+                    <span class="product-badge">
+                        POPULAR
+                    </span>
 
                     <img
                         src="images/earbuds.png"
@@ -387,44 +717,72 @@
                         loading="lazy"
                     >
 
+                    <button
+                        type="button"
+                        class="product-wishlist"
+                        aria-label="Add to wishlist"
+                    >
+                        ♡
+                    </button>
+
                 </div>
 
+
                 <div class="product-info">
+
+                    <span class="product-category">
+                        AUDIO
+                    </span>
 
                     <h3>
                         Wireless Earbuds
                     </h3>
 
                     <p>
-                        Clear sound with a modern
-                        wireless design.
+                        Premium wireless earbuds
+                        with clear sound and modern comfort.
                     </p>
 
-                    <div class="price">
-                        ৳1,850
+
+                    <div class="product-bottom">
+
+                        <div>
+
+                            <span class="price">
+                                ৳1,850
+                            </span>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="add-cart-btn"
+                            data-add-to-cart="earbuds"
+                            onclick="handleAddToCart('earbuds')"
+                        >
+                            + Add
+                        </button>
+
                     </div>
-
-                    <button class="add-cart">
-                        Add to Cart
-                    </button>
-
-                    <a
-                        href="product.html?product=earbuds"
-                        class="view-details"
-                    >
-                        View Details
-                    </a>
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <!-- PRODUCT 2 -->
 
-            <div class="product-card">
+            <!-- Product 2 -->
+
+            <article
+                class="product-card"
+                data-product-id="smart-watch"
+            >
 
                 <div class="product-image">
+
+                    <span class="product-badge">
+                        TRENDING
+                    </span>
 
                     <img
                         src="images/smart-watch.png"
@@ -432,44 +790,68 @@
                         loading="lazy"
                     >
 
+                    <button
+                        type="button"
+                        class="product-wishlist"
+                        aria-label="Add to wishlist"
+                    >
+                        ♡
+                    </button>
+
                 </div>
 
+
                 <div class="product-info">
+
+                    <span class="product-category">
+                        WEARABLE
+                    </span>
 
                     <h3>
                         Smart Watch
                     </h3>
 
                     <p>
-                        Stylish smartwatch for
-                        everyday use.
+                        Stylish smart watch with useful
+                        everyday and fitness features.
                     </p>
 
-                    <div class="price">
-                        ৳2,450
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            ৳2,450
+                        </span>
+
+                        <button
+                            type="button"
+                            class="add-cart-btn"
+                            data-add-to-cart="smart-watch"
+                            onclick="handleAddToCart('smart-watch')"
+                        >
+                            + Add
+                        </button>
+
                     </div>
-
-                    <button class="add-cart">
-                        Add to Cart
-                    </button>
-
-                    <a
-                        href="product.html?product=smart-watch"
-                        class="view-details"
-                    >
-                        View Details
-                    </a>
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <!-- PRODUCT 3 -->
 
-            <div class="product-card">
+            <!-- Product 3 -->
+
+            <article
+                class="product-card"
+                data-product-id="power-bank"
+            >
 
                 <div class="product-image">
+
+                    <span class="product-badge">
+                        BEST VALUE
+                    </span>
 
                     <img
                         src="images/power-bank.png"
@@ -477,44 +859,68 @@
                         loading="lazy"
                     >
 
+                    <button
+                        type="button"
+                        class="product-wishlist"
+                        aria-label="Add to wishlist"
+                    >
+                        ♡
+                    </button>
+
                 </div>
 
+
                 <div class="product-info">
+
+                    <span class="product-category">
+                        POWER
+                    </span>
 
                     <h3>
                         Power Bank 30000mAh
                     </h3>
 
                     <p>
-                        Powerful portable charging
-                        for your devices.
+                        High-capacity portable power
+                        for your everyday devices.
                     </p>
 
-                    <div class="price">
-                        ৳1,650
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            ৳1,650
+                        </span>
+
+                        <button
+                            type="button"
+                            class="add-cart-btn"
+                            data-add-to-cart="power-bank"
+                            onclick="handleAddToCart('power-bank')"
+                        >
+                            + Add
+                        </button>
+
                     </div>
-
-                    <button class="add-cart">
-                        Add to Cart
-                    </button>
-
-                    <a
-                        href="product.html?product=power-bank"
-                        class="view-details"
-                    >
-                        View Details
-                    </a>
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <!-- PRODUCT 4 -->
 
-            <div class="product-card">
+            <!-- Product 4 -->
+
+            <article
+                class="product-card"
+                data-product-id="projector"
+            >
 
                 <div class="product-image">
+
+                    <span class="product-badge">
+                        FEATURED
+                    </span>
 
                     <img
                         src="images/projector.png"
@@ -522,44 +928,68 @@
                         loading="lazy"
                     >
 
+                    <button
+                        type="button"
+                        class="product-wishlist"
+                        aria-label="Add to wishlist"
+                    >
+                        ♡
+                    </button>
+
                 </div>
 
+
                 <div class="product-info">
+
+                    <span class="product-category">
+                        ELECTRONICS
+                    </span>
 
                     <h3>
                         Mini Projector 4K
                     </h3>
 
                     <p>
-                        Enjoy movies and videos
-                        on a big screen.
+                        Compact projector for movies,
+                        presentations and entertainment.
                     </p>
 
-                    <div class="price">
-                        ৳4,200
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            ৳4,200
+                        </span>
+
+                        <button
+                            type="button"
+                            class="add-cart-btn"
+                            data-add-to-cart="projector"
+                            onclick="handleAddToCart('projector')"
+                        >
+                            + Add
+                        </button>
+
                     </div>
-
-                    <button class="add-cart">
-                        Add to Cart
-                    </button>
-
-                    <a
-                        href="product.html?product=projector"
-                        class="view-details"
-                    >
-                        View Details
-                    </a>
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <!-- PRODUCT 5 -->
 
-            <div class="product-card">
+            <!-- Product 5 -->
+
+            <article
+                class="product-card"
+                data-product-id="selfie-stick"
+            >
 
                 <div class="product-image">
+
+                    <span class="product-badge">
+                        CREATOR PICK
+                    </span>
 
                     <img
                         src="images/selfie-stick.png"
@@ -567,44 +997,68 @@
                         loading="lazy"
                     >
 
+                    <button
+                        type="button"
+                        class="product-wishlist"
+                        aria-label="Add to wishlist"
+                    >
+                        ♡
+                    </button>
+
                 </div>
 
+
                 <div class="product-info">
+
+                    <span class="product-category">
+                        MOBILE
+                    </span>
 
                     <h3>
                         Selfie Stick Tripod
                     </h3>
 
                     <p>
-                        Perfect for photos,
-                        videos and content creation.
+                        2-in-1 selfie stick and tripod
+                        for photos and content creation.
                     </p>
 
-                    <div class="price">
-                        ৳950
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            ৳950
+                        </span>
+
+                        <button
+                            type="button"
+                            class="add-cart-btn"
+                            data-add-to-cart="selfie-stick"
+                            onclick="handleAddToCart('selfie-stick')"
+                        >
+                            + Add
+                        </button>
+
                     </div>
-
-                    <button class="add-cart">
-                        Add to Cart
-                    </button>
-
-                    <a
-                        href="product.html?product=selfie-stick"
-                        class="view-details"
-                    >
-                        View Details
-                    </a>
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <!-- PRODUCT 6 -->
 
-            <div class="product-card">
+            <!-- Product 6 -->
+
+            <article
+                class="product-card"
+                data-product-id="neckband"
+            >
 
                 <div class="product-image">
+
+                    <span class="product-badge">
+                        NEW
+                    </span>
 
                     <img
                         src="images/neckband.png"
@@ -612,38 +1066,53 @@
                         loading="lazy"
                     >
 
+                    <button
+                        type="button"
+                        class="product-wishlist"
+                        aria-label="Add to wishlist"
+                    >
+                        ♡
+                    </button>
+
                 </div>
 
+
                 <div class="product-info">
+
+                    <span class="product-category">
+                        AUDIO
+                    </span>
 
                     <h3>
                         Bluetooth Neckband
                     </h3>
 
                     <p>
-                        Comfortable wireless audio
-                        for everyday listening.
+                        Comfortable neckband with
+                        clear audio for music and calls.
                     </p>
 
-                    <div class="price">
-                        ৳1,250
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            ৳1,250
+                        </span>
+
+                        <button
+                            type="button"
+                            class="add-cart-btn"
+                            data-add-to-cart="neckband"
+                            onclick="handleAddToCart('neckband')"
+                        >
+                            + Add
+                        </button>
+
                     </div>
-
-                    <button class="add-cart">
-                        Add to Cart
-                    </button>
-
-                    <a
-                        href="product.html?product=neckband"
-                        class="view-details"
-                    >
-                        View Details
-                    </a>
 
                 </div>
 
-            </div>
-
+            </article>
 
         </div>
 
@@ -652,362 +1121,420 @@
 </section>
 
 
-<!-- =========================================
+
+<!-- =====================================================
      DEALS
-========================================= -->
+     ===================================================== -->
 
 <section
-    class="section deals"
+    class="deals-section"
     id="deals"
 >
 
     <div class="container">
 
-        <div class="section-title">
+
+        <div class="deal-banner">
+
+
+            <div class="deal-content">
+
+                <span class="eyebrow">
+                    LIMITED-TIME OFFER
+                </span>
+
+                <h2>
+                    Upgrade Your Setup.
+                    <span>Spend Smarter.</span>
+                </h2>
+
+                <p>
+                    Grab selected smart gadgets at
+                    special prices while stocks last.
+                </p>
+
+                <a
+                    href="#products"
+                    class="btn btn-primary"
+                >
+                    Shop Deals
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+            <div class="deal-visual">
+
+                <div class="deal-circle">
+
+                    <span>
+                        SMART
+                    </span>
+
+                    <strong>
+                        TECH
+                    </strong>
+
+                    <small>
+                        FOR EVERYDAY LIFE
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+     ===================================================== -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+    <div class="container about-grid">
+
+
+        <div class="about-visual">
+
+            <div class="about-card">
+
+                <span class="about-logo">
+                    D
+                </span>
+
+                <strong>
+                    DREAM SHOP
+                </strong>
+
+                <small>
+                    SMART GADGETS • BETTER LIFE
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <span class="eyebrow">
+                ABOUT DREAM SHOP
+            </span>
 
             <h2>
-                Special Deals
+                Technology That
+                Fits Your Life.
             </h2>
 
             <p>
-                Great gadgets. Better prices.
+                Dream Shop brings together practical,
+                modern and stylish gadgets designed
+                for everyday life.
+            </p>
+
+            <p>
+                Our goal is simple — make useful
+                technology easier to discover,
+                easier to buy and easier to enjoy.
+            </p>
+
+
+            <div class="about-points">
+
+                <div>
+                    <span>✓</span>
+                    <strong>
+                        Carefully Selected Products
+                    </strong>
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    <strong>
+                        Customer-Focused Service
+                    </strong>
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    <strong>
+                        Modern Shopping Experience
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+     ===================================================== -->
+
+<section
+    class="contact-section"
+    id="contact"
+>
+
+    <div class="container">
+
+
+        <div class="contact-box">
+
+
+            <div class="contact-content">
+
+                <span class="eyebrow">
+                    NEED HELP?
+                </span>
+
+                <h2>
+                    Let's Talk.
+                </h2>
+
+                <p>
+                    Have a question about a product,
+                    delivery or your order?
+                    We're happy to help.
+                </p>
+
+            </div>
+
+
+            <div class="contact-actions">
+
+                <a
+                    href="tel:01345406660"
+                    class="contact-action"
+                >
+
+                    <span>
+                        📞
+                    </span>
+
+                    <div>
+
+                        <small>
+                            CALL US
+                        </small>
+
+                        <strong>
+                            01345 406660
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://wa.me/8801345406660"
+                    target="_blank"
+                    rel="noopener"
+                    class="contact-action"
+                >
+
+                    <span>
+                        💬
+                    </span>
+
+                    <div>
+
+                        <small>
+                            WHATSAPP
+                        </small>
+
+                        <strong>
+                            Chat With Us
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="mailto:shadshoyaib@gmail.com"
+                    class="contact-action"
+                >
+
+                    <span>
+                        ✉
+                    </span>
+
+                    <div>
+
+                        <small>
+                            EMAIL
+                        </small>
+
+                        <strong>
+                            shadshoyaib@gmail.com
+                        </strong>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="container footer-grid">
+
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+
+                <span class="brand-mark">
+                    D
+                </span>
+
+                <span class="brand-text">
+
+                    <strong>
+                        DREAM<span>SHOP</span>
+                    </strong>
+
+                    <small>
+                        SMART GADGETS • BETTER LIFE
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <p>
+                Smart gadgets and modern technology
+                for a better everyday life.
             </p>
 
         </div>
 
 
-        <div class="deal-box">
+        <div class="footer-column">
 
             <h3>
-                🔥 Exclusive Gadget Deals
+                Quick Links
+            </h3>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#products">
+                Products
+            </a>
+
+            <a href="#deals">
+                Deals
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Customer Care
+            </h3>
+
+            <a href="#contact">
+                Contact Us
+            </a>
+
+            <a href="cart.html">
+                Shopping Cart
+            </a>
+
+            <a href="checkout.html">
+                Checkout
+            </a>
+
+            <a href="#">
+                Return Policy
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Our Location
             </h3>
 
             <p>
-                Stay connected with Dream Shop
-                for our latest offers and discounts.
+                H'6, R'3, BLOCK-D,
+                Mirpur-1, Dhaka
             </p>
 
-            <a
-                href="#products"
-                class="btn btn-primary"
-            >
-                Explore Products
+            <a href="tel:01345406660">
+                01345 406660
+            </a>
+
+            <a href="mailto:shadshoyaib@gmail.com">
+                shadshoyaib@gmail.com
             </a>
 
         </div>
 
     </div>
 
-</section>
 
+    <div class="footer-bottom">
 
-<!-- =========================================
-     ABOUT
-========================================= -->
-
-<section
-    class="section"
-    id="about"
->
-
-    <div class="container">
-
-        <div class="about-content">
-
-            <div class="about-text">
-
-                <h2>
-                    Welcome to Dream Shop
-                </h2>
-
-                <p>
-                    Dream Shop is a modern online gadget
-                    store focused on useful technology,
-                    smart electronics, and accessories.
-                </p>
-
-                <p>
-                    Our goal is simple — to make quality
-                    technology easier to discover and buy.
-                </p>
-
-            </div>
-
-
-            <div class="about-box">
-
-                <h3>
-                    Smart Gadgets • Better Life
-                </h3>
-
-                <p>
-                    Discover technology that fits your
-                    lifestyle and makes everyday tasks
-                    easier, smarter, and more enjoyable.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-     CONTACT
-========================================= -->
-
-<section
-    class="section contact"
-    id="contact"
->
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h2>
-                Contact Dream Shop
-            </h2>
+        <div class="container footer-bottom-inner">
 
             <p>
-                Have a question? We're here to help.
-                Get in touch with us anytime.
+                © 2026 Dream Shop.
+                All Rights Reserved.
             </p>
 
-        </div>
-
-
-        <div class="contact-grid">
-
-
-            <!-- PHONE -->
-
-            <div class="contact-card">
-
-                <div class="category-icon">
-                    📞
-                </div>
-
-                <h3>
-                    Call Us
-                </h3>
-
-                <p>
-                    Need quick assistance?
-                    Give us a call.
-                </p>
-
-                <a
-                    href="tel:01345406660"
-                    class="btn btn-primary"
-                >
-                    01345406660
-                </a>
-
-            </div>
-
-
-            <!-- WHATSAPP -->
-
-            <div class="contact-card">
-
-                <div class="category-icon">
-                    💬
-                </div>
-
-                <h3>
-                    WhatsApp
-                </h3>
-
-                <p>
-                    Chat with us directly
-                    on WhatsApp.
-                </p>
-
-                <a
-                    href="https://wa.me/8801345406660"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn-primary"
-                >
-                    Chat on WhatsApp
-                </a>
-
-            </div>
-
-
-            <!-- EMAIL -->
-
-            <div class="contact-card">
-
-                <div class="category-icon">
-                    📧
-                </div>
-
-                <h3>
-                    Email Us
-                </h3>
-
-                <p>
-                    Send us your questions
-                    or inquiries by email.
-                </p>
-
-                <a
-                    href="mailto:shadshoyaib@gmail.com"
-                    class="btn btn-primary"
-                >
-                    Email Us
-                </a>
-
-            </div>
-
-
-            <!-- LOCATION -->
-
-            <div class="contact-card">
-
-                <div class="category-icon">
-                    📍
-                </div>
-
-                <h3>
-                    Our Location
-                </h3>
-
-                <p>
-                    H'6, R'3, BLOCK-D,
-                    Mirpur-1, Dhaka
-                </p>
-
-                <a
-                    href="https://www.google.com/maps/search/?api=1&query=H%276%20R%273%20BLOCK-D%20Mirpur-1%20Dhaka"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn-outline"
-                >
-                    View on Google Maps
-                </a>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-     FOOTER
-========================================= -->
-
-<footer class="footer">
-
-    <div class="container">
-
-        <div class="footer-grid">
-
-
-            <!-- BRAND -->
-
-            <div>
-
-                <h3>
-                    DREAM<span style="color:#00c8ff;">
-                        SHOP
-                    </span>
-                </h3>
-
-                <p>
-                    Smart Gadgets • Better Life
-                </p>
-
-                <p>
-                    Your destination for modern
-                    gadgets and electronics.
-                </p>
-
-            </div>
-
-
-            <!-- QUICK LINKS -->
-
-            <div>
-
-                <h3>
-                    Quick Links
-                </h3>
-
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#products">
-                    Products
-                </a>
-
-                <a href="#deals">
-                    Deals
-                </a>
-
-                <a href="#about">
-                    About
-                </a>
-
-            </div>
-
-
-            <!-- SUPPORT -->
-
-            <div>
-
-                <h3>
-                    Support
-                </h3>
-
-                <a href="#contact">
-                    Contact Us
-                </a>
-
-                <a href="#products">
-                    Shop Now
-                </a>
-
-                <a href="#home">
-                    Back to Top
-                </a>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =========================================
-             OWNER CREDIT
-        ========================================== -->
-
-        <div class="owner-credit">
-
-            <strong>
-                MOHAMMAD SHOYAIB
-            </strong>
-
-            <span>
-                Founder &amp; Owner — Dream Shop
-            </span>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            © 2026 Dream Shop. All Rights Reserved.
+            <p>
+                A BRAND BY
+                <strong>
+                    SHOYAIB
+                </strong>
+            </p>
 
         </div>
 
@@ -1016,11 +1543,16 @@
 </footer>
 
 
-<!-- =========================================
-     JAVASCRIPT
-========================================= -->
 
-<script src="script.js"></script>
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script
+    src="script.js"
+></script>
+
 
 </body>
+
 </html>
