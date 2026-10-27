@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dream Shop | Account</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,Helvetica,sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+            background:
+                radial-gradient(circle at top left,#172554 0%,transparent 35%),
+                radial-gradient(circle at bottom right,#0f766e 0%,transparent 30%),
+                #020617;
+            color:#fff;
+        }
+
+        .container{
+            width:100%;
+            max-width:430px;
+        }
+
+        .logo{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        .logo h1{
+            font-size:32px;
+            letter-spacing:4px;
+            font-weight:800;
+        }
+
+        .logo p{
+            margin-top:7px;
+            color:#94a3b8;
+            font-size:13px;
+        }
+
+        .card{
+            width:100%;
+            padding:30px;
+            border-radius:22px;
+            background:rgba(15,23,42,.88);
+            border:1px solid rgba(148,163,184,.18);
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.45),
+                inset 0 1px 0 rgba(255,255,255,.04);
+            backdrop-filter:blur(18px);
+        }
+
+        .tabs{
+            display:flex;
+            gap:8px;
+            margin-bottom:25px;
+            padding:5px;
+            border-radius:12px;
+            background:#020617;
+        }
+
+        .tab{
+            flex:1;
+            border:0;
+            padding:12px;
+            border-radius:9px;
+            background:transparent;
+            color:#94a3b8;
+            font-size:14px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        .tab.active{
+            background:#2563eb;
+            color:#fff;
+        }
+
+        .form-title{
+            font-size:24px;
+            margin-bottom:7px;
+        }
+
+        .form-subtitle{
+            color:#94a3b8;
+            font-size:13px;
+            margin-bottom:22px;
+            line-height:1.5;
+        }
+
+        .field{
+            margin-bottom:16px;
+        }
+
+        .field label{
+            display:block;
+            margin-bottom:7px;
+            color:#cbd5e1;
+            font-size:13px;
+            font-weight:600;
+        }
+
+        .field input{
+            width:100%;
+            padding:13px 14px;
+            border-radius:11px;
+            border:1px solid #334155;
+            outline:none;
+            background:#020617;
+            color:#fff;
+            font-size:14px;
+            transition:.2s;
+        }
+
+        .field input:focus{
+            border-color:#3b82f6;
+            box-shadow:0 0 0 3px rgba(59,130,246,.12);
+        }
+
+        .submit-btn{
+            width:100%;
+            border:0;
+            padding:14px;
+            margin-top:5px;
+            border-radius:11px;
+            background:linear-gradient(135deg,#2563eb,#7c3aed);
+            color:#fff;
+            font-size:15px;
+            font-weight:800;
+            cursor:pointer;
+            transition:.2s;
+        }
+
+        .submit-btn:hover{
+            transform:translateY(-1px);
+            box-shadow:0 10px 25px rgba(37,99,235,.25);
+        }
+
+        .submit-btn:disabled{
+            opacity:.6;
+            cursor:not-allowed;
+            transform:none;
+        }
+
+        .message{
+            display:none;
+            margin-bottom:16px;
+            padding:12px 13px;
+            border-radius:10px;
+            font-size:13px;
+            line-height:1.5;
+        }
+
+        .message.error{
+            display:block;
+            background:rgba(239,68,68,.10);
+            border:1px solid rgba(239,68,68,.25);
+            color:#fca5a5;
+        }
+
+        .message.success{
+            display:block;
+            background:rgba(34,197,94,.10);
+            border:1px solid rgba(34,197,94,.25);
+            color:#86efac;
+        }
+
+        .account-box{
+            display:none;
+        }
+
+        .user-icon{
+            width:65px;
+            height:65px;
+            margin:0 auto 15px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:50%;
+            background:linear-gradient(135deg,#2563eb,#7c3aed);
+            font-size:28px;
+        }
+
+        .account-name{
+            text-align:center;
+            font-size:21px;
+            font-weight:800;
+            margin-bottom:6px;
+        }
+
+        .account-email{
+            text-align:center;
+            color:#94a3b8;
+            font-size:13px;
+            margin-bottom:22px;
+            word-break:break-word;
+        }
+
+        .account-actions{
+            display:grid;
+            gap:10px;
+        }
+
+        .account-action{
+            width:100%;
+            padding:13px;
+            border-radius:10px;
+            text-align:center;
+            text-decoration:none;
+            border:1px solid #334155;
+            background:#0f172a;
+            color:#fff;
+            font-size:14px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        .account-action:hover{
+            border-color:#475569;
+        }
+
+        .logout-btn{
+            border:0;
+            background:#7f1d1d;
+            color:#fecaca;
+        }
+
+        .back-home{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            color:#94a3b8;
+            text-decoration:none;
+            font-size:13px;
+        }
+
+        .back-home:hover{
+            color:#fff;
+        }
+
+        .admin-badge{
+            display:none;
+            width:max-content;
+            margin:0 auto 15px;
+            padding:6px 11px;
+            border-radius:20px;
+            background:rgba(245,158,11,.12);
+            border:1px solid rgba(245,158,11,.25);
+            color:#fbbf24;
+            font-size:11px;
+            font-weight:800;
+            letter-spacing:.5px;
+        }
+
+        @media(max-width:480px){
+
+            body{
+                padding:14px;
+            }
+
+            .card{
+                padding:22px 18px;
+            }
+
+            .logo h1{
+                font-size:27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <h1>DREAM SHOP</h1>
+        <p>Smart Gadgets • Better Life</p>
+    </div>
+
+
+    <div class="card">
+
+        <!-- LOGIN / SIGNUP -->
+
+        <div id="authSection">
+
+            <div class="tabs">
+
+                <button
+                    type="button"
+                    id="loginTab"
+                    class="tab active"
+                    onclick="showLogin()"
+                >
+                    Login
+                </button>
+
+                <button
+                    type="button"
+                    id="signupTab"
+                    class="tab"
+                    onclick="showSignup()"
+                >
+                    Sign Up
+                </button>
+
+            </div>
+
+
+            <h2
+                id="formTitle"
+                class="form-title"
+            >
+                Welcome Back
+            </h2>
+
+            <p
+                id="formSubtitle"
+                class="form-subtitle"
+            >
+                Login to your Dream Shop account.
+            </p>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form
+                id="loginForm"
+                onsubmit="handleLogin(event)"
+            >
+
+                <div class="field">
+
+                    <label for="loginEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                    class="submit-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <!-- SIGNUP FORM -->
+
+            <form
+                id="signupForm"
+                style="display:none;"
+                onsubmit="handleSignup(event)"
+            >
+
+                <div class="field">
+
+                    <label for="signupName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="signupEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="signupPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="signupConfirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signupConfirmPassword"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="signupButton"
+                    class="submit-btn"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- CUSTOMER / ADMIN ACCOUNT -->
+
+        <div
+            id="accountSection"
+            class="account-box"
+        >
+
+            <div
+                id="adminBadge"
+                class="admin-badge"
+            >
+                ADMIN ACCOUNT
+            </div>
+
+
+            <div class="user-icon">
+                👤
+            </div>
+
+
+            <div
+                id="accountName"
+                class="account-name"
+            >
+                Account
+            </div>
+
+
+            <div
+                id="accountEmail"
+                class="account-email"
+            >
+            </div>
+
+
+            <div class="account-actions">
+
+                <a
+                    href="index.html"
+                    class="account-action"
+                >
+                    🏠 Back to Home
+                </a>
+
+
+                <a
+                    href="cart.html"
+                    class="account-action"
+                >
+                    🛒 My Cart
+                </a>
+
+
+                <a
+                    id="adminPanelButton"
+                    href="admin.html"
+                    class="account-action"
+                    style="display:none;"
+                >
+                    ⚡ Open Admin Panel
+                </a>
+
+
+                <button
+                    type="button"
+                    class="account-action logout-btn"
+                    onclick="logoutUser()"
+                >
+                    🚪 Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back-home"
+    >
+        ← Return to Dream Shop
+    </a>
+
+</div>
+
+
+<script>
+
+    /* ==========================================
+       SUPABASE CONFIG
+    ========================================== */
+
+    const SUPABASE_URL =
+        "https://lwnisnbsfqqmrifujnbw.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_G2Lrr0dofsmmEWqJACdXrw_GuRHwitt";
+
+
+    const ADMIN_EMAIL =
+        "shadshoyaib@gmail.com";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    /* ==========================================
+       ELEMENTS
+    ========================================== */
+
+    const authSection =
+        document.getElementById("authSection");
+
+    const accountSection =
+        document.getElementById("accountSection");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const signupForm =
+        document.getElementById("signupForm");
+
+    const loginTab =
+        document.getElementById("loginTab");
+
+    const signupTab =
+        document.getElementById("signupTab");
+
+    const formTitle =
+        document.getElementById("formTitle");
+
+    const formSubtitle =
+        document.getElementById("formSubtitle");
+
+    const message =
+        document.getElementById("message");
+
+    const accountName =
+        document.getElementById("accountName");
+
+    const accountEmail =
+        document.getElementById("accountEmail");
+
+    const adminBadge =
+        document.getElementById("adminBadge");
+
+    const adminPanelButton =
+        document.getElementById("adminPanelButton");
+
+
+    /* ==========================================
+       ADMIN CHECK
+    ========================================== */
+
+    function isAdminUser(user){
+
+        if(!user){
+            return false;
+        }
+
+        const email =
+            String(user.email || "")
+            .trim()
+            .toLowerCase();
+
+        return (
+            email ===
+            ADMIN_EMAIL.toLowerCase()
+        );
+
+    }
+
+
+    /* ==========================================
+       MESSAGE
+    ========================================== */
+
+    function showMessage(
+        text,
+        type = "error"
+    ){
+
+        message.textContent = text;
+
+        message.className =
+            "message " + type;
+
+    }
+
+
+    function clearMessage(){
+
+        message.textContent = "";
+
+        message.className =
+            "message";
+
+    }
+
+
+    /* ==========================================
+       LOGIN TAB
+    ========================================== */
+
+    function showLogin(){
+
+        clearMessage();
+
+        loginForm.style.display =
+            "block";
+
+        signupForm.style.display =
+            "none";
+
+        loginTab.classList.add("active");
+
+        signupTab.classList.remove("active");
+
+        formTitle.textContent =
+            "Welcome Back";
+
+        formSubtitle.textContent =
+            "Login to your Dream Shop account.";
+
+    }
+
+
+    /* ==========================================
+       SIGNUP TAB
+    ========================================== */
+
+    function showSignup(){
+
+        clearMessage();
+
+        loginForm.style.display =
+            "none";
+
+        signupForm.style.display =
+            "block";
+
+        loginTab.classList.remove("active");
+
+        signupTab.classList.add("active");
+
+        formTitle.textContent =
+            "Create Account";
+
+        formSubtitle.textContent =
+            "Create your Dream Shop customer account.";
+
+    }
+
+
+    /* ==========================================
+       LOGIN
+    ========================================== */
+
+    async function handleLogin(event){
+
+        event.preventDefault();
+
+        clearMessage();
+
+        const button =
+            document.getElementById("loginButton");
+
+        const email =
+            document.getElementById("loginEmail")
+            .value
+            .trim()
+            .toLowerCase();
+
+        const password =
+            document.getElementById("loginPassword")
+            .value;
+
+
+        if(!email || !password){
+
+            showMessage(
+                "Please enter your email and password."
+            );
+
+            return;
+
+        }
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Logging in...";
+
+
+        try{
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient.auth.signInWithPassword({
+
+                email: email,
+
+                password: password
+
+            });
+
+
+            if(error){
+
+                throw error;
+
+            }
+
+
+            if(!data.user){
+
+                throw new Error(
+                    "Login failed. Please try again."
+                );
+
+            }
+
+
+            /* ADMIN */
+
+            if(isAdminUser(data.user)){
+
+                window.location.href =
+                    "admin.html";
+
+                return;
+
+            }
+
+
+            /* CUSTOMER */
+
+            showAccount(data.user);
+
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            showMessage(
+                error.message ||
+                "Login failed. Please check your email and password."
+            );
+
+        }
+
+        finally{
+
+            button.disabled = false;
+
+            button.textContent =
+                "Login";
+
+        }
+
+    }
+
+
+    /* ==========================================
+       SIGNUP
+    ========================================== */
+
+    async function handleSignup(event){
+
+        event.preventDefault();
+
+        clearMessage();
+
+        const button =
+            document.getElementById("signupButton");
+
+
+        const name =
+            document.getElementById("signupName")
+            .value
+            .trim();
+
+
+        const email =
+            document.getElementById("signupEmail")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+        const password =
+            document.getElementById("signupPassword")
+            .value;
+
+
+        const confirmPassword =
+            document.getElementById("signupConfirmPassword")
+            .value;
+
+
+        if(!name){
+
+            showMessage(
+                "Please enter your full name."
+            );
+
+            return;
+
+        }
+
+
+        if(password.length < 6){
+
+            showMessage(
+                "Password must be at least 6 characters."
+            );
+
+            return;
+
+        }
+
+
+        if(password !== confirmPassword){
+
+            showMessage(
+                "Passwords do not match."
+            );
+
+            return;
+
+        }
+
+
+        /* ADMIN EMAIL CANNOT BE USED FOR CUSTOMER SIGNUP */
+
+        if(
+            email ===
+            ADMIN_EMAIL.toLowerCase()
+        ){
+
+            showMessage(
+                "This email is reserved for the Admin account."
+            );
+
+            return;
+
+        }
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Creating Account...";
+
+
+        try{
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient.auth.signUp({
+
+                email: email,
+
+                password: password,
+
+                options:{
+
+                    data:{
+
+                        full_name: name
+
+                    }
+
+                }
+
+            });
+
+
+            if(error){
+
+                throw error;
+
+            }
+
+
+            if(
+                data.user &&
+                data.session
+            ){
+
+                showMessage(
+                    "Account created successfully!",
+                    "success"
+                );
+
+                showAccount(data.user);
+
+                return;
+
+            }
+
+
+            showMessage(
+                "Account created. Please check your email to verify your account.",
+                "success"
+            );
+
+
+            document.getElementById(
+                "signupForm"
+            ).reset();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            showMessage(
+                error.message ||
+                "Could not create account."
+            );
+
+        }
+
+        finally{
+
+            button.disabled = false;
+
+            button.textContent =
+                "Create Account";
+
+        }
+
+    }
+
+
+    /* ==========================================
+       SHOW ACCOUNT
+    ========================================== */
+
+    function showAccount(user){
+
+        if(!user){
+
+            return;
+
+        }
+
+
+        if(isAdminUser(user)){
+
+            /*
+                Admin should normally go directly
+                to admin.html.
+            */
+
+            window.location.href =
+                "admin.html";
+
+            return;
+
+        }
+
+
+        const metadata =
+            user.user_metadata || {};
+
+
+        const name =
+            metadata.full_name ||
+            "Dream Shop Customer";
+
+
+        accountName.textContent =
+            name;
+
+
+        accountEmail.textContent =
+            user.email || "";
+
+
+        adminBadge.style.display =
+            "none";
+
+
+        adminPanelButton.style.display =
+            "none";
+
+
+        authSection.style.display =
+            "none";
+
+
+        accountSection.style.display =
+            "block";
+
+    }
+
+
+    /* ==========================================
+       LOGOUT
+    ========================================== */
+
+    async function logoutUser(){
+
+        try{
+
+            await supabaseClient.auth.signOut();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+        }
+
+
+        accountSection.style.display =
+            "none";
+
+        authSection.style.display =
+            "block";
+
+        showLogin();
+
+        document.getElementById(
+            "loginForm"
+        ).reset();
+
+    }
+
+
+    /* ==========================================
+       CHECK CURRENT SESSION
+    ========================================== */
+
+    async function checkCurrentUser(){
+
+        try{
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient.auth.getSession();
+
+
+            if(error){
+
+                console.error(error);
+
+                return;
+
+            }
+
+
+            const session =
+                data.session;
+
+
+            if(!session || !session.user){
+
+                return;
+
+            }
+
+
+            const user =
+                session.user;
+
+
+            /* ADMIN */
+
+            if(isAdminUser(user)){
+
+                window.location.href =
+                    "admin.html";
+
+                return;
+
+            }
+
+
+            /* CUSTOMER */
+
+            showAccount(user);
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+        }
+
+    }
+
+
+    /* ==========================================
+       AUTH STATE CHANGE
+    ========================================== */
+
+    supabaseClient.auth.onAuthStateChange(
+        (event, session) => {
+
+            if(!session || !session.user){
+
+                return;
+
+            }
+
+
+            const user =
+                session.user;
+
+
+            if(isAdminUser(user)){
+
+                if(
+                    !window.location.pathname
+                    .toLowerCase()
+                    .endsWith("admin.html")
+                ){
+
+                    window.location.href =
+                        "admin.html";
+
+                }
+
+                return;
+
+            }
+
+
+            showAccount(user);
+
+        }
+    );
+
+
+    /* ==========================================
+       START
+    ========================================== */
+
+    checkCurrentUser();
+
+</script>
+
+</body>
+
+</html>
