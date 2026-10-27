@@ -9,410 +9,579 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* =========================================
-           DREAM SHOP — PREMIUM PRODUCT DETAILS
-        ========================================= */
+        /* =====================================================
+           PRODUCT DETAILS PAGE
+        ===================================================== */
 
-        .product-details-page {
-            background: #f5f7fb !important;
-            padding: 32px 20px 55px !important;
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(76, 29, 149, 0.30), transparent 35%),
+                radial-gradient(circle at 85% 80%, rgba(37, 99, 235, 0.24), transparent 35%),
+                linear-gradient(135deg, #020617, #0b1030 50%, #11113d);
+            color: #ffffff;
+            min-height: 100vh;
         }
 
-        .product-details-page .container {
-            max-width: 1050px !important;
-            margin: 0 auto !important;
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .product-details-header {
+            width: 100%;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .product-details-header .nav-container {
+            width: min(1400px, 94%);
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+
+            gap: 34px;
+            padding: 18px 0;
+        }
+
+        .product-details-header .logo {
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .product-details-header .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            min-width: 0;
+        }
+
+        .product-details-header .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: 0.3s ease;
+        }
+
+        .product-details-header .nav-menu a:hover {
+            color: #7dd3fc;
+        }
+
+        .product-details-header .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .product-details-header .search-box {
+            width: 190px;
+            max-width: 100%;
+        }
+
+        .product-details-header .search-box input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .product-details-header .cart-icon {
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .product-details-header .menu-toggle {
+            display: none;
+        }
+
+        /* =====================================================
+           PRODUCT DETAILS MAIN
+        ===================================================== */
+
+        .product-details-page {
+            width: min(1200px, 92%);
+            margin: 0 auto;
+            padding: 65px 0 90px;
         }
 
         .product-details-wrapper {
-            display: grid !important;
-            grid-template-columns: 350px minmax(0, 1fr) !important;
-            gap: 38px !important;
-            align-items: center !important;
-            background: #ffffff !important;
-            border: 1px solid #e5e7eb !important;
-            border-radius: 20px !important;
-            padding: 30px !important;
-            box-shadow: 0 10px 32px rgba(15, 23, 42, 0.08) !important;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+
+            align-items: center;
+
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(129, 140, 248, 0.22);
+            border-radius: 30px;
+
+            padding: 45px;
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.45),
+                inset 0 0 40px rgba(99, 102, 241, 0.04);
+
+            backdrop-filter: blur(18px);
         }
 
-
-        /* =========================
+        /* =====================================================
            PRODUCT IMAGE
-        ========================== */
+        ===================================================== */
 
-        .product-details-image {
-            width: 350px !important;
-            height: 350px !important;
-            margin: 0 auto !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background: #f8fafc !important;
-            border: 1px solid #edf0f4 !important;
-            border-radius: 18px !important;
-            overflow: hidden !important;
+        .product-image-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 460px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(99, 102, 241, 0.18),
+                    transparent 65%
+                );
+
+            border-radius: 25px;
         }
 
-        .product-details-image img {
-            display: block !important;
-            width: 72% !important;
-            height: 72% !important;
-            max-width: 260px !important;
-            max-height: 260px !important;
-            object-fit: contain !important;
-            border-radius: 12px !important;
+        .product-image-section img {
+            width: 100%;
+            max-width: 470px;
+            max-height: 470px;
+
+            object-fit: contain;
+
+            display: block;
+
+            filter:
+                drop-shadow(0 25px 35px rgba(0, 0, 0, 0.55));
+
+            transition: transform 0.45s ease;
         }
 
+        .product-image-section img:hover {
+            transform: scale(1.04);
+        }
 
-        /* =========================
-           PRODUCT INFORMATION
-        ========================== */
+        /* =====================================================
+           PRODUCT INFO
+        ===================================================== */
 
-        .product-details-info {
-            min-width: 0 !important;
+        .product-info {
+            padding: 10px 0;
         }
 
         .product-badge {
-            display: inline-flex !important;
-            align-items: center !important;
-            padding: 6px 11px !important;
-            border-radius: 999px !important;
-            background: #eff6ff !important;
-            color: #2563eb !important;
-            border: 1px solid #dbeafe !important;
-            font-size: 13px !important;
-            font-weight: 800 !important;
-            letter-spacing: 0.3px !important;
-            margin-bottom: 12px !important;
+            display: inline-flex;
+            align-items: center;
+
+            padding: 8px 15px;
+            margin-bottom: 18px;
+
+            border-radius: 999px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(99, 102, 241, 0.20),
+                rgba(56, 189, 248, 0.14)
+            );
+
+            border: 1px solid rgba(125, 211, 252, 0.25);
+
+            color: #7dd3fc;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .product-details-info h1 {
-            margin: 0 0 12px !important;
-            color: #111827 !important;
-            font-size: 36px !important;
-            line-height: 1.2 !important;
-            font-weight: 800 !important;
+        .product-info h1 {
+            margin: 0 0 15px;
+
+            font-size: clamp(32px, 4vw, 50px);
+            line-height: 1.08;
+
+            color: #ffffff;
+
+            font-weight: 800;
         }
 
-        .product-details-price {
-            margin-bottom: 17px !important;
-            color: #2563eb !important;
-            font-size: 30px !important;
-            line-height: 1.2 !important;
-            font-weight: 900 !important;
+        .product-price {
+            margin-bottom: 22px;
+
+            font-size: 31px;
+            font-weight: 800;
+
+            color: #67e8f9;
         }
 
-        .product-details-description {
-            margin: 0 0 20px !important;
-            color: #64748b !important;
-            font-size: 17px !important;
-            line-height: 1.65 !important;
+        .product-description {
+            color: #cbd5e1;
+
+            font-size: 15px;
+            line-height: 1.8;
+
+            margin-bottom: 28px;
         }
 
-
-        /* =========================
+        /* =====================================================
            FEATURES
-        ========================== */
+        ===================================================== */
 
-        .product-features-box {
-            background: #f8fafc !important;
-            border: 1px solid #e8edf3 !important;
-            border-radius: 14px !important;
-            padding: 16px 18px !important;
-            margin-bottom: 20px !important;
+        .product-features {
+            margin: 0 0 30px;
+            padding: 0;
+
+            list-style: none;
         }
 
-        .product-features-box h3 {
-            margin: 0 0 9px !important;
-            color: #1f2937 !important;
-            font-size: 17px !important;
-            font-weight: 800 !important;
+        .product-features li {
+            position: relative;
+
+            padding-left: 28px;
+            margin-bottom: 12px;
+
+            color: #e2e8f0;
+
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        .product-features-box ul {
-            margin: 0 !important;
-            padding-left: 20px !important;
-            color: #64748b !important;
+        .product-features li::before {
+            content: "✓";
+
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            color: #67e8f9;
+
+            font-weight: 800;
         }
 
-        .product-features-box li {
-            margin: 5px 0 !important;
-            font-size: 16px !important;
-            line-height: 1.5 !important;
-        }
-
-
-        /* =========================
+        /* =====================================================
            QUANTITY
-        ========================== */
+        ===================================================== */
 
-        .product-quantity-box {
-            margin-bottom: 20px !important;
+        .quantity-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            margin-bottom: 25px;
         }
 
-        .product-quantity-box label {
-            display: block !important;
-            margin-bottom: 8px !important;
-            color: #374151 !important;
-            font-size: 15px !important;
-            font-weight: 700 !important;
+        .quantity-label {
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 600;
         }
 
-        .quantity-selector {
-            display: inline-flex !important;
-            align-items: center !important;
-            height: 48px !important;
-            border: 1px solid #d9e0e8 !important;
-            border-radius: 10px !important;
-            overflow: hidden !important;
-            background: #ffffff !important;
+        .quantity-control {
+            display: flex;
+            align-items: center;
+
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            background: rgba(15, 23, 42, 0.75);
         }
 
-        .quantity-selector button {
-            width: 46px !important;
-            height: 48px !important;
-            border: none !important;
-            background: #f8fafc !important;
-            color: #1f2937 !important;
-            font-size: 22px !important;
-            font-weight: 700 !important;
-            cursor: pointer !important;
-            transition: 0.2s !important;
+        .quantity-control button {
+            width: 40px;
+            height: 40px;
+
+            border: 0;
+
+            background: transparent;
+            color: #ffffff;
+
+            font-size: 20px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
         }
 
-        .quantity-selector button:hover {
-            background: #eff6ff !important;
-            color: #2563eb !important;
+        .quantity-control button:hover {
+            background: rgba(99, 102, 241, 0.25);
         }
 
-        .quantity-selector input {
-            width: 52px !important;
-            height: 48px !important;
-            border: none !important;
-            border-left: 1px solid #e5e7eb !important;
-            border-right: 1px solid #e5e7eb !important;
-            outline: none !important;
-            text-align: center !important;
-            color: #111827 !important;
-            background: #ffffff !important;
-            font-size: 16px !important;
-            font-weight: 700 !important;
+        .quantity-control input {
+            width: 45px;
+            height: 40px;
+
+            border: 0;
+            outline: none;
+
+            background: transparent;
+            color: #ffffff;
+
+            text-align: center;
+
+            font-size: 15px;
+            font-weight: 700;
         }
 
-        .quantity-selector input::-webkit-outer-spin-button,
-        .quantity-selector input::-webkit-inner-spin-button {
-            -webkit-appearance: none !important;
-            margin: 0 !important;
-        }
-
-        .quantity-selector input[type="number"] {
-            appearance: textfield !important;
-        }
-
-
-        /* =========================
+        /* =====================================================
            ACTION BUTTONS
-        ========================== */
+        ===================================================== */
 
-        .product-action-buttons {
-            display: flex !important;
-            gap: 14px !important;
-            margin-top: 5px !important;
+        .product-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            flex-wrap: wrap;
         }
 
-        .product-action-buttons .btn {
-            min-height: 52px !important;
-            padding: 13px 24px !important;
-            border-radius: 11px !important;
-            font-size: 16px !important;
-            font-weight: 800 !important;
-            cursor: pointer !important;
-            transition: all 0.25s ease !important;
+        .product-actions button {
+            border: none;
+            outline: none;
+
+            min-height: 50px;
+            padding: 0 25px;
+
+            border-radius: 13px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                opacity 0.25s ease;
         }
 
-        .product-action-buttons .btn-primary {
-            flex: 1 !important;
-            border: none !important;
-            background: linear-gradient(135deg, #06b6d4, #2563eb) !important;
-            color: #ffffff !important;
-            box-shadow: 0 7px 18px rgba(37, 99, 235, 0.18) !important;
+        .product-actions button:hover {
+            transform: translateY(-2px);
         }
 
-        .product-action-buttons .btn-primary:hover {
-            transform: translateY(-1px) !important;
-            box-shadow: 0 10px 23px rgba(37, 99, 235, 0.25) !important;
+        .buy-now-btn {
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #8b5cf6
+            );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 12px 30px rgba(99, 102, 241, 0.28);
         }
 
-        .product-action-buttons .btn-outline {
-            flex: 1 !important;
-            border: 1px solid #2563eb !important;
-            background: #ffffff !important;
-            color: #2563eb !important;
+        .buy-now-btn:hover {
+            box-shadow:
+                0 16px 38px rgba(99, 102, 241, 0.40);
         }
 
-        .product-action-buttons .btn-outline:hover {
-            background: #eff6ff !important;
-            transform: translateY(-1px) !important;
+        .add-cart-btn {
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid rgba(125, 211, 252, 0.28) !important;
+
+            color: #ffffff;
         }
 
+        .add-cart-btn:hover {
+            background: rgba(56, 189, 248, 0.12);
+        }
 
-        /* =========================
+        /* =====================================================
            BACK BUTTON
-        ========================== */
+        ===================================================== */
 
-        .back-to-products {
-            display: inline-block !important;
-            margin-top: 18px !important;
-            color: #64748b !important;
-            font-size: 15px !important;
-            font-weight: 700 !important;
-            text-decoration: none !important;
-            transition: 0.2s !important;
+        .back-products {
+            margin-top: 30px;
         }
 
-        .back-to-products:hover {
-            color: #2563eb !important;
+        .back-products a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            color: #94a3b8;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.25s ease;
         }
 
+        .back-products a:hover {
+            color: #67e8f9;
+        }
 
-        /* =========================
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .product-details-footer {
+            width: min(1200px, 92%);
+            margin: 0 auto;
+
+            padding: 25px 0 40px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            border-top: 1px solid rgba(148, 163, 184, 0.10);
+        }
+
+        /* =====================================================
            TABLET
-        ========================== */
+        ===================================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1050px) {
 
-            .product-details-page {
-                padding: 28px 18px 50px !important;
+            .product-details-header .nav-container {
+                grid-template-columns: auto 1fr auto;
+                gap: 18px;
+            }
+
+            .product-details-header .nav-menu {
+                gap: 14px;
+            }
+
+            .product-details-header .nav-menu a {
+                font-size: 12px;
+            }
+
+            .product-details-header .search-box {
+                width: 150px;
             }
 
             .product-details-wrapper {
-                grid-template-columns: 1fr !important;
-                gap: 28px !important;
-                padding: 28px !important;
-            }
-
-            .product-details-image {
-                width: 330px !important;
-                height: 330px !important;
-            }
-
-            .product-details-info {
-                max-width: 680px !important;
-                width: 100% !important;
-                margin: 0 auto !important;
-            }
-
-            .product-details-info h1 {
-                font-size: 32px !important;
+                gap: 40px;
+                padding: 35px;
             }
         }
 
-
-        /* =========================
+        /* =====================================================
            MOBILE
-        ========================== */
+        ===================================================== */
 
-        @media (max-width: 600px) {
+        @media (max-width: 850px) {
+
+            .product-details-header .nav-container {
+                display: flex;
+                justify-content: space-between;
+
+                gap: 15px;
+            }
+
+            .product-details-header .nav-menu {
+                display: none;
+            }
+
+            .product-details-header .nav-actions {
+                margin-left: auto;
+            }
+
+            .product-details-header .search-box {
+                display: none;
+            }
+
+            .product-details-header .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 42px;
+                height: 42px;
+
+                border: 1px solid rgba(148, 163, 184, 0.25);
+                border-radius: 10px;
+
+                background: rgba(15, 23, 42, 0.65);
+
+                color: #ffffff;
+
+                cursor: pointer;
+            }
 
             .product-details-page {
-                padding: 18px 10px 40px !important;
+                width: 92%;
+                padding-top: 35px;
             }
 
             .product-details-wrapper {
-                gap: 22px !important;
-                padding: 18px !important;
-                border-radius: 17px !important;
+                grid-template-columns: 1fr;
+
+                gap: 30px;
+
+                padding: 25px;
             }
 
-            .product-details-image {
-                width: 100% !important;
-                max-width: 300px !important;
-                height: 300px !important;
-                border-radius: 15px !important;
+            .product-image-section {
+                min-height: 350px;
             }
 
-            .product-details-image img {
-                width: 72% !important;
-                height: 72% !important;
-                max-width: 220px !important;
-                max-height: 220px !important;
-            }
-
-            .product-badge {
-                font-size: 12px !important;
-                padding: 5px 9px !important;
-            }
-
-            .product-details-info h1 {
-                font-size: 27px !important;
-                line-height: 1.25 !important;
-            }
-
-            .product-details-price {
-                font-size: 26px !important;
-            }
-
-            .product-details-description {
-                font-size: 16px !important;
-                line-height: 1.65 !important;
-            }
-
-            .product-features-box {
-                padding: 14px !important;
-            }
-
-            .product-features-box h3 {
-                font-size: 16px !important;
-            }
-
-            .product-features-box li {
-                font-size: 15px !important;
-            }
-
-            .product-action-buttons {
-                flex-direction: column !important;
-                gap: 10px !important;
-            }
-
-            .product-action-buttons .btn {
-                width: 100% !important;
-                min-height: 54px !important;
-                font-size: 16px !important;
-            }
-
-            .back-to-products {
-                margin-top: 16px !important;
-                font-size: 14px !important;
+            .product-info h1 {
+                font-size: 34px;
             }
         }
 
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
 
-        /* =========================
-           SMALL PHONES
-        ========================== */
+        @media (max-width: 520px) {
 
-        @media (max-width: 380px) {
+            .product-details-header .nav-container {
+                padding: 14px 0;
+            }
 
             .product-details-wrapper {
-                padding: 15px !important;
+                padding: 20px;
+                border-radius: 22px;
             }
 
-            .product-details-image {
-                height: 260px !important;
-                max-width: 260px !important;
+            .product-image-section {
+                min-height: 280px;
             }
 
-            .product-details-image img {
-                max-width: 195px !important;
-                max-height: 195px !important;
+            .product-image-section img {
+                max-width: 320px;
+                max-height: 320px;
             }
 
-            .product-details-info h1 {
-                font-size: 24px !important;
+            .product-info h1 {
+                font-size: 29px;
             }
 
-            .product-details-price {
-                font-size: 24px !important;
+            .product-price {
+                font-size: 27px;
+            }
+
+            .product-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .product-actions button {
+                width: 100%;
+            }
+
+            .quantity-area {
+                justify-content: space-between;
             }
         }
     </style>
@@ -420,26 +589,27 @@
 
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container nav-container">
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="product-details-header">
+
+        <div class="nav-container">
 
             <a href="index.html" class="logo">
-                <span class="logo-icon">🛒</span>
-
-                <span>
-                    <strong>Dream Shop</strong>
-                    <small>Smart Gadgets • Better Life</small>
-                </span>
+                DREAM<span>SHOP</span>
             </a>
 
-            <nav class="nav-menu" id="navMenu">
+            <nav class="nav-menu">
+
                 <a href="index.html">Home</a>
                 <a href="index.html#products">Products</a>
                 <a href="index.html#categories">Categories</a>
                 <a href="index.html#deals">Deals</a>
                 <a href="index.html#about">About</a>
                 <a href="index.html#contact">Contact</a>
+
             </nav>
 
             <div class="nav-actions">
@@ -447,31 +617,21 @@
                 <div class="search-box">
                     <input
                         type="text"
-                        id="searchInput"
+                        id="productSearch"
                         placeholder="Search products..."
                     >
-
-                    <button
-                        id="searchButton"
-                        type="button"
-                    >
-                        🔍
-                    </button>
                 </div>
 
-                <a
-                    href="cart.html"
-                    class="icon-button"
-                    title="Shopping Cart"
-                >
+                <a href="cart.html" class="cart-icon">
                     🛒
                     <span id="cartCount">0</span>
                 </a>
 
                 <button
+                    type="button"
                     class="menu-toggle"
                     id="menuToggle"
-                    type="button"
+                    aria-label="Open menu"
                 >
                     ☰
                 </button>
@@ -479,176 +639,366 @@
             </div>
 
         </div>
+
     </header>
 
 
-    <!-- Product Details -->
-    <main>
+    <!-- =====================================================
+         PRODUCT DETAILS
+    ===================================================== -->
 
-        <section class="section product-details-page">
+    <main class="product-details-page">
 
-            <div class="container">
+        <div class="product-details-wrapper">
 
-                <div class="product-details-wrapper">
+            <!-- PRODUCT IMAGE -->
 
-                    <!-- Product Image -->
-                    <div class="product-details-image">
+            <section class="product-image-section">
 
-                        <img
-                            id="productImage"
-                            src=""
-                            alt="Product"
+                <img
+                    id="productImage"
+                    src=""
+                    alt="Product"
+                >
+
+            </section>
+
+
+            <!-- PRODUCT INFORMATION -->
+
+            <section class="product-info">
+
+                <div class="product-badge">
+                    Premium Gadget
+                </div>
+
+                <h1 id="productName">
+                    Product Name
+                </h1>
+
+                <div
+                    class="product-price"
+                    id="productPrice"
+                >
+                    ৳0
+                </div>
+
+                <p
+                    class="product-description"
+                    id="productDescription"
+                >
+                    Product description will appear here.
+                </p>
+
+
+                <ul
+                    class="product-features"
+                    id="productFeatures"
+                >
+                </ul>
+
+
+                <!-- QUANTITY -->
+
+                <div class="quantity-area">
+
+                    <span class="quantity-label">
+                        Quantity
+                    </span>
+
+                    <div class="quantity-control">
+
+                        <button
+                            type="button"
+                            id="decreaseQty"
+                        >
+                            −
+                        </button>
+
+                        <input
+                            type="number"
+                            id="quantity"
+                            value="1"
+                            min="1"
+                            max="99"
                         >
 
-                    </div>
-
-
-                    <!-- Product Information -->
-                    <div class="product-details-info">
-
-                        <span class="product-badge">
-                            Premium Gadget
-                        </span>
-
-                        <h1 id="productName">
-                            Product Name
-                        </h1>
-
-                        <div
-                            class="product-details-price"
-                            id="productPrice"
+                        <button
+                            type="button"
+                            id="increaseQty"
                         >
-                            ৳0
-                        </div>
-
-                        <p
-                            class="product-details-description"
-                            id="productDescription"
-                        >
-                            Product description will appear here.
-                        </p>
-
-
-                        <!-- Features -->
-                        <div class="product-features-box">
-
-                            <h3>Key Features</h3>
-
-                            <ul id="productFeatures">
-                                <!-- Features will be added by JavaScript -->
-                            </ul>
-
-                        </div>
-
-
-                        <!-- Quantity -->
-                        <div class="product-quantity-box">
-
-                            <label for="quantity">
-                                Quantity
-                            </label>
-
-                            <div class="quantity-selector">
-
-                                <button
-                                    type="button"
-                                    id="decreaseQuantity"
-                                >
-                                    −
-                                </button>
-
-                                <input
-                                    type="number"
-                                    id="quantity"
-                                    value="1"
-                                    min="1"
-                                    max="20"
-                                >
-
-                                <button
-                                    type="button"
-                                    id="increaseQuantity"
-                                >
-                                    +
-                                </button>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Action Buttons -->
-                        <div class="product-action-buttons">
-
-                            <button
-                                type="button"
-                                id="buyNowButton"
-                                class="btn btn-primary"
-                            >
-                                ⚡ Buy Now
-                            </button>
-
-                            <button
-                                type="button"
-                                id="detailsAddCart"
-                                class="btn btn-outline"
-                            >
-                                🛒 Add to Cart
-                            </button>
-
-                        </div>
-
-
-                        <!-- Back Button -->
-                        <a
-                            href="index.html#products"
-                            class="back-to-products"
-                        >
-                            ← Back to Products
-                        </a>
+                            +
+                        </button>
 
                     </div>
 
                 </div>
 
-            </div>
 
-        </section>
+                <!-- ACTION BUTTONS -->
+
+                <div class="product-actions">
+
+                    <button
+                        type="button"
+                        class="buy-now-btn"
+                        id="buyNowBtn"
+                    >
+                        Buy Now
+                    </button>
+
+                    <button
+                        type="button"
+                        class="add-cart-btn"
+                        id="addToCartBtn"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+
+                <!-- BACK -->
+
+                <div class="back-products">
+
+                    <a href="index.html#products">
+                        ← Back to Products
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
 
     </main>
 
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
 
-        <div class="container">
+    <footer class="product-details-footer">
 
-            <div class="footer-content">
-
-                <div class="footer-brand">
-                    <h3>Dream Shop</h3>
-                    <p>Smart Gadgets • Better Life</p>
-                </div>
-
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#products">Products</a>
-                    <a href="cart.html">Cart</a>
-                    <a href="index.html#contact">Contact</a>
-                </div>
-
-            </div>
-
-            <div class="footer-bottom">
-                <p>© 2026 Dream Shop. All Rights Reserved.</p>
-            </div>
-
-        </div>
+        © 2026 Dream Shop. All rights reserved.
 
     </footer>
 
 
+    <!-- =====================================================
+         SCRIPT
+    ===================================================== -->
+
     <script src="script.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const decreaseBtn =
+                document.getElementById("decreaseQty");
+
+            const increaseBtn =
+                document.getElementById("increaseQty");
+
+            const quantityInput =
+                document.getElementById("quantity");
+
+            const buyNowBtn =
+                document.getElementById("buyNowBtn");
+
+
+            /* =================================================
+               DECREASE QUANTITY
+            ================================================= */
+
+            if (decreaseBtn && quantityInput) {
+
+                decreaseBtn.addEventListener("click", function () {
+
+                    let quantity =
+                        parseInt(quantityInput.value) || 1;
+
+                    if (quantity > 1) {
+                        quantity--;
+                    }
+
+                    quantityInput.value = quantity;
+
+                });
+
+            }
+
+
+            /* =================================================
+               INCREASE QUANTITY
+            ================================================= */
+
+            if (increaseBtn && quantityInput) {
+
+                increaseBtn.addEventListener("click", function () {
+
+                    let quantity =
+                        parseInt(quantityInput.value) || 1;
+
+                    if (quantity < 99) {
+                        quantity++;
+                    }
+
+                    quantityInput.value = quantity;
+
+                });
+
+            }
+
+
+            /* =================================================
+               QUANTITY INPUT
+            ================================================= */
+
+            if (quantityInput) {
+
+                quantityInput.addEventListener("input", function () {
+
+                    let quantity =
+                        parseInt(this.value) || 1;
+
+                    if (quantity < 1) {
+                        quantity = 1;
+                    }
+
+                    if (quantity > 99) {
+                        quantity = 99;
+                    }
+
+                    this.value = quantity;
+
+                });
+
+            }
+
+
+            /* =================================================
+               BUY NOW
+            ================================================= */
+
+            if (buyNowBtn) {
+
+                buyNowBtn.addEventListener("click", function () {
+
+                    const productNameElement =
+                        document.getElementById("productName");
+
+                    const productPriceElement =
+                        document.getElementById("productPrice");
+
+                    const productImageElement =
+                        document.getElementById("productImage");
+
+
+                    const productName =
+                        productNameElement
+                            ? productNameElement.textContent.trim()
+                            : "";
+
+
+                    const productPriceText =
+                        productPriceElement
+                            ? productPriceElement.textContent.trim()
+                            : "৳0";
+
+
+                    const productImage =
+                        productImageElement
+                            ? productImageElement.getAttribute("src")
+                            : "";
+
+
+                    let quantity =
+                        parseInt(quantityInput.value) || 1;
+
+
+                    if (quantity < 1) {
+                        quantity = 1;
+                    }
+
+                    if (quantity > 99) {
+                        quantity = 99;
+                    }
+
+
+                    /* Convert price to number */
+
+                    const productPrice =
+                        parseInt(
+                            productPriceText.replace(/[^\d]/g, "")
+                        ) || 0;
+
+
+                    /* Create selected product */
+
+                    const buyNowProduct = {
+
+                        id: "buy-now-" + Date.now(),
+
+                        name: productName,
+
+                        price: productPrice,
+
+                        image: productImage,
+
+                        quantity: quantity,
+
+                        total: productPrice * quantity
+
+                    };
+
+
+                    /* Save Buy Now product */
+
+                    localStorage.setItem(
+                        "dreamShopBuyNow",
+                        JSON.stringify(buyNowProduct)
+                    );
+
+
+                    /* Also create checkout cart */
+
+                    const checkoutItem = {
+
+                        id: buyNowProduct.id,
+
+                        name: buyNowProduct.name,
+
+                        price: buyNowProduct.price,
+
+                        image: buyNowProduct.image,
+
+                        quantity: buyNowProduct.quantity,
+
+                        total: buyNowProduct.total
+
+                    };
+
+
+                    localStorage.setItem(
+                        "dreamShopCheckoutItems",
+                        JSON.stringify([checkoutItem])
+                    );
+
+
+                    /* Go to Order page */
+
+                    window.location.href = "checkout.html";
+
+                });
+
+            }
+
+        });
+
+    </script>
 
 </body>
 </html>
