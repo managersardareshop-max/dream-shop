@@ -2278,7 +2278,7 @@ button{
                 </strong>
 
                 <span>
-                    Dream Shop
+                    shadshoyaib@gmail.com
                 </span>
 
             </div>
@@ -3152,6 +3152,42 @@ const supabaseClient =
 
 
 /* =====================================================
+   ADMIN ACCESS CONTROL
+===================================================== */
+
+/*
+    ONLY THIS EMAIL CAN OPEN THE ADMIN PANEL.
+
+    The password is NOT stored here.
+    Password verification is handled by Supabase Auth.
+*/
+
+const ADMIN_EMAIL =
+    "shadshoyaib@gmail.com";
+
+
+function isAdminUser(user){
+
+    if(!user){
+        return false;
+    }
+
+    const userEmail =
+        String(
+            user.email || ""
+        )
+        .trim()
+        .toLowerCase();
+
+    return (
+        userEmail ===
+        ADMIN_EMAIL.toLowerCase()
+    );
+
+}
+
+
+/* =====================================================
    PRODUCT CATALOG
 ===================================================== */
 
@@ -3335,7 +3371,7 @@ loginForm.addEventListener(
         loginButton.disabled = true;
 
         loginButton.textContent =
-            "⏳ Logging in...";
+            "⏳ Checking account...";
 
 
         const email =
@@ -3349,6 +3385,31 @@ loginForm.addEventListener(
             document
                 .getElementById("loginPassword")
                 .value;
+
+
+        /*
+            IMPORTANT:
+            Check the requested admin email first.
+            This prevents a customer from attempting
+            to use the Admin Panel login.
+        */
+
+        if(
+            email.toLowerCase() !==
+            ADMIN_EMAIL.toLowerCase()
+        ){
+
+            loginError.textContent =
+                "❌ This account is not authorized for Admin Panel.";
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "🔐 Login to Dashboard";
+
+            return;
+
+        }
 
 
         const {
@@ -3376,9 +3437,34 @@ loginForm.addEventListener(
         }
 
 
+        /*
+            Double-check the authenticated
+            Supabase user after login.
+        */
+
+        if(
+            !data.user ||
+            !isAdminUser(data.user)
+        ){
+
+            await supabaseClient.auth.signOut();
+
+            loginError.textContent =
+                "❌ Access denied. Admin account required.";
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "🔐 Login to Dashboard";
+
+            return;
+
+        }
+
+
         if(data.session){
 
-            showDashboard();
+            await showDashboard();
 
         }
 
@@ -3399,15 +3485,53 @@ async function checkSession(){
             .getSession();
 
 
-    if(data.session){
+    const session =
+        data.session;
 
-        showDashboard();
 
-    }else{
+    /*
+        No logged-in user
+        → show Admin Login.
+    */
+
+    if(!session || !session.user){
 
         showLogin();
 
+        return;
+
     }
+
+
+    /*
+        Logged-in customer or any other
+        account → immediately sign out.
+    */
+
+    if(
+        !isAdminUser(
+            session.user
+        )
+    ){
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        loginError.textContent =
+            "❌ Access denied. Only the authorized Admin account can access this panel.";
+
+        return;
+
+    }
+
+
+    /*
+        Correct Admin account
+        → open dashboard.
+    */
+
+    await showDashboard();
 
 }
 
@@ -3427,6 +3551,35 @@ function showLogin(){
 
 async function showDashboard(){
 
+    /*
+        Final safety check before displaying
+        any Admin Panel content.
+    */
+
+    const {
+        data
+    } =
+        await supabaseClient.auth
+            .getSession();
+
+
+    if(
+        !data.session ||
+        !data.session.user ||
+        !isAdminUser(
+            data.session.user
+        )
+    ){
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        return;
+
+    }
+
+
     loginSection.classList.add(
         "hidden"
     );
@@ -3434,6 +3587,25 @@ async function showDashboard(){
     dashboardSection.classList.remove(
         "hidden"
     );
+
+
+    /*
+        Show current admin email
+        in the sidebar.
+    */
+
+    const adminEmailElement =
+        document.querySelector(
+            ".admin-mini-text span"
+        );
+
+    if(adminEmailElement){
+
+        adminEmailElement.textContent =
+            data.session.user.email;
+
+    }
+
 
     loadSettings();
 
@@ -3443,10 +3615,88 @@ async function showDashboard(){
 
 
 /* =====================================================
+   AUTH STATE CHANGE
+===================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+    async function(
+        event,
+        session
+    ){
+
+        if(
+            event === "SIGNED_OUT"
+        ){
+
+            showLogin();
+
+            return;
+
+        }
+
+
+        if(
+            session &&
+            session.user
+        ){
+
+            if(
+                !isAdminUser(
+                    session.user
+                )
+            ){
+
+                await supabaseClient.auth.signOut();
+
+                showLogin();
+
+                loginError.textContent =
+                    "❌ This account does not have Admin access.";
+
+                return;
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =====================================================
    LOAD ORDERS
 ===================================================== */
 
 async function loadOrders(){
+
+    /*
+        Verify Admin session before loading
+        any customer/order information.
+    */
+
+    const {
+        data:sessionData
+    } =
+        await supabaseClient.auth
+            .getSession();
+
+
+    if(
+        !sessionData.session ||
+        !sessionData.session.user ||
+        !isAdminUser(
+            sessionData.session.user
+        )
+    ){
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        return;
+
+    }
+
 
     ordersContainer.innerHTML = `
         <div class="loading">
@@ -3989,6 +4239,30 @@ window.openOrderDetails =
     async function(orderId){
 
         const {
+            data:sessionData
+        } =
+            await supabaseClient.auth
+                .getSession();
+
+
+        if(
+            !sessionData.session ||
+            !sessionData.session.user ||
+            !isAdminUser(
+                sessionData.session.user
+            )
+        ){
+
+            await supabaseClient.auth.signOut();
+
+            showLogin();
+
+            return;
+
+        }
+
+
+        const {
             data:order,
             error
         } =
@@ -4332,6 +4606,30 @@ window.updateOrderStatus =
         orderId,
         status
     ){
+
+        const {
+            data:sessionData
+        } =
+            await supabaseClient.auth
+                .getSession();
+
+
+        if(
+            !sessionData.session ||
+            !sessionData.session.user ||
+            !isAdminUser(
+                sessionData.session.user
+            )
+        ){
+
+            await supabaseClient.auth.signOut();
+
+            showLogin();
+
+            return;
+
+        }
+
 
         const text =
             status === "confirmed"
@@ -4867,6 +5165,30 @@ window.removeAdminProduct =
 ===================================================== */
 
 async function createAdminOrder(){
+
+    const {
+        data:sessionData
+    } =
+        await supabaseClient.auth
+            .getSession();
+
+
+    if(
+        !sessionData.session ||
+        !sessionData.session.user ||
+        !isAdminUser(
+            sessionData.session.user
+        )
+    ){
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        return;
+
+    }
+
 
     const name =
         document
@@ -5620,6 +5942,9 @@ async function logoutAdmin(){
     await supabaseClient.auth.signOut();
 
     showLogin();
+
+    loginError.textContent =
+        "✅ Admin logged out successfully.";
 
 }
 
