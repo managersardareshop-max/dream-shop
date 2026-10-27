@@ -1,331 +1,656 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#080b18"
+    >
 
     <title>Checkout | Dream Shop</title>
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ================================
-           DREAM SHOP PREMIUM CHECKOUT
-        ================================= */
+
+        /* =====================================================
+           DREAM SHOP — PREMIUM CHECKOUT
+           Theme: Deep Indigo + Electric Cyan
+        ===================================================== */
 
         body {
-            background: #f5f7fb !important;
-            color: #172033;
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(59, 130, 246, 0.13),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(6, 182, 212, 0.10),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080b18 0%,
+                    #0b1024 48%,
+                    #08131f 100%
+                ) !important;
+
+            color: #f4f7ff;
         }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .site-header {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(8, 11, 24, 0.96),
+                    rgba(10, 18, 38, 0.94)
+                ) !important;
+
+            border-bottom: 1px solid rgba(56, 189, 248, 0.14);
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.22);
+        }
+
+
+        .logo a {
+            color: #ffffff !important;
+        }
+
+
+        .logo a span {
+            color: #22d3ee !important;
+        }
+
+
+        .main-nav a {
+            color: #b8c4dc !important;
+        }
+
+
+        .main-nav a:hover {
+            color: #67e8f9 !important;
+        }
+
+
+        /* =====================================================
+           CHECKOUT PAGE
+        ===================================================== */
 
         .checkout-page {
+
             padding: 45px 20px 70px;
+
             min-height: 75vh;
-            background: #f5f7fb;
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(37, 99, 235, 0.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 75%,
+                    rgba(6, 182, 212, 0.08),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080b18,
+                    #0a1022 50%,
+                    #07131d
+                );
         }
 
+
         .checkout-container {
+
             max-width: 1050px;
+
             margin: 0 auto;
+
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 360px;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                360px;
+
             gap: 25px;
+
             align-items: start;
         }
 
-        /* Main Cards */
+
+        /* =====================================================
+           CHECKOUT BOX
+        ===================================================== */
+
         .checkout-box,
         .order-summary {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(17, 26, 55, 0.96),
+                    rgba(10, 17, 37, 0.96)
+                );
+
+            border: 1px solid rgba(96, 165, 250, 0.16);
+
             border-radius: 18px;
+
             padding: 28px;
-            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
+
+            box-shadow:
+                0 20px 55px rgba(0, 0, 0, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+            backdrop-filter: blur(16px);
         }
 
-        /* Headings */
+
         .checkout-box h1 {
+
             margin: 0 0 25px;
-            color: #111827;
-            font-size: 27px;
-            line-height: 1.3;
-            font-weight: 800;
+
+            color: #f8fbff;
+
+            font-size: 28px;
+
+            line-height: 1.2;
+
+            letter-spacing: -0.4px;
         }
+
 
         .order-summary h2 {
-            margin: 0 0 20px;
-            color: #111827;
-            font-size: 21px;
-            font-weight: 800;
+
+            margin: 0 0 22px;
+
+            color: #f8fbff;
+
+            font-size: 22px;
         }
 
-        /* Labels */
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
         .checkout-box label {
+
             display: block;
-            margin: 17px 0 7px;
-            color: #374151;
+
+            margin:
+                17px 0
+                8px;
+
+            color: #c8d4ea;
+
             font-size: 14px;
-            font-weight: 700;
+
+            font-weight: 600;
         }
 
-        .checkout-box label:first-of-type {
-            margin-top: 0;
-        }
 
-        /* Inputs */
         .checkout-box input,
         .checkout-box select,
         .checkout-box textarea {
+
             width: 100%;
+
             box-sizing: border-box;
+
             padding: 13px 14px;
-            border-radius: 10px;
-            border: 1px solid #d8dee8;
-            background: #ffffff;
-            color: #111827;
+
+            border-radius: 11px;
+
+            border: 1px solid rgba(148, 163, 184, 0.18);
+
+            background:
+                rgba(6, 12, 27, 0.78);
+
+            color: #f5f8ff;
+
             outline: none;
+
             font-family: inherit;
-            font-size: 15px;
-            transition: all 0.2s ease;
+
+            transition:
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
         }
+
 
         .checkout-box input::placeholder,
         .checkout-box textarea::placeholder {
-            color: #9ca3af;
+
+            color: #66728c;
         }
+
 
         .checkout-box input:focus,
         .checkout-box select:focus,
         .checkout-box textarea:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.09);
+
+            border-color:
+                rgba(34, 211, 238, 0.65);
+
+            background:
+                rgba(8, 18, 38, 0.92);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(34, 211, 238, 0.08),
+                0 0 22px
+                rgba(34, 211, 238, 0.06);
         }
 
+
         .checkout-box textarea {
-            min-height: 88px;
+
+            min-height: 105px;
+
             resize: vertical;
         }
 
-        /* Order Items */
+
+        /* =====================================================
+           CHECKOUT ITEMS
+        ===================================================== */
+
         .checkout-items {
-            margin-bottom: 15px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
         }
+
 
         .checkout-item {
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
-            padding: 13px 0;
-            border-bottom: 1px solid #edf0f4;
+
+            padding: 12px;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(18, 30, 62, 0.90),
+                    rgba(10, 19, 39, 0.90)
+                );
+
+            border:
+                1px solid
+                rgba(96, 165, 250, 0.12);
         }
 
-        .checkout-item:last-child {
-            border-bottom: none;
-        }
 
         .checkout-item img {
-            width: 58px;
-            height: 58px;
-            flex: 0 0 58px;
-            object-fit: contain;
+
+            width: 62px;
+
+            height: 62px;
+
+            object-fit: cover;
+
             border-radius: 10px;
-            background: #f8fafc;
-            border: 1px solid #edf0f4;
-            padding: 4px;
-            box-sizing: border-box;
+
+            background: #0b1224;
+
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.12);
         }
+
 
         .checkout-item-info {
+
             flex: 1;
-            min-width: 0;
         }
+
 
         .checkout-item-info h4 {
-            margin: 0 0 4px;
-            color: #1f2937;
+
+            margin: 0 0 5px;
+
+            color: #f1f6ff;
+
             font-size: 14px;
-            font-weight: 700;
-            line-height: 1.35;
         }
 
+
         .checkout-item-info p {
+
             margin: 0;
-            color: #6b7280;
+
+            color: #8997b2;
+
             font-size: 13px;
         }
 
+
         .checkout-item-price {
-            color: #2563eb;
-            font-size: 14px;
-            font-weight: 800;
+
+            color: #67e8f9;
+
+            font-weight: 700;
+
             white-space: nowrap;
         }
 
-        /* Total */
+
+        /* =====================================================
+           TOTAL
+        ===================================================== */
+
         .checkout-total {
-            margin-top: 10px;
-            padding-top: 17px;
-            border-top: 1px solid #e5e7eb;
+
+            margin-top: 22px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid
+                rgba(148, 163, 184, 0.13);
         }
 
+
         .total-row {
+
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
-            margin: 10px 0;
-            color: #6b7280;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 8px 0;
+
+            color: #9eabc2;
+
             font-size: 14px;
         }
 
+
         .total-row.final {
-            margin-top: 15px;
-            padding-top: 14px;
-            border-top: 1px solid #edf0f4;
-            font-size: 19px;
-            font-weight: 800;
-            color: #111827;
+
+            margin-top: 8px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid
+                rgba(148, 163, 184, 0.10);
+
+            color: #eef5ff;
+
+            font-size: 17px;
+
+            font-weight: 700;
         }
+
 
         .total-row.final span:last-child {
-            color: #2563eb;
+
+            color: #67e8f9;
+
+            font-size: 22px;
+
+            text-shadow:
+                0 0 18px
+                rgba(34, 211, 238, 0.18);
         }
 
-        /* Confirm Button */
+
+        /* =====================================================
+           CONFIRM BUTTON
+        ===================================================== */
+
         .confirm-btn {
+
             width: 100%;
+
             margin-top: 24px;
+
             padding: 14px 18px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #06b6d4, #2563eb);
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 800;
+
+            border: 0;
+
+            border-radius: 12px;
+
             cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 7px 18px rgba(37, 99, 235, 0.18);
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0891b2,
+                    #4f46e5
+                );
+
+            box-shadow:
+                0 10px 28px
+                rgba(34, 211, 238, 0.12);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                filter 0.25s ease;
         }
+
 
         .confirm-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
+
+            transform: translateY(-2px);
+
+            filter: brightness(1.08);
+
+            box-shadow:
+                0 14px 35px
+                rgba(34, 211, 238, 0.20);
         }
 
+
         .confirm-btn:active {
+
             transform: translateY(0);
         }
 
-        /* Empty Checkout */
+
+        /* =====================================================
+           EMPTY CHECKOUT
+        ===================================================== */
+
         .empty-checkout {
+
+            padding: 35px 15px;
+
             text-align: center;
-            color: #6b7280;
-            padding: 25px 0;
+
+            color: #8c99b1;
         }
 
-        /* Mobile */
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .site-footer {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #050814,
+                    #07111d
+                ) !important;
+
+            border-top:
+                1px solid
+                rgba(34, 211, 238, 0.10);
+        }
+
+
+        .site-footer p {
+
+            color: #77849c;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
         @media (max-width: 850px) {
-            .checkout-page {
-                padding: 30px 15px 55px;
-            }
 
             .checkout-container {
+
                 grid-template-columns: 1fr;
-                gap: 18px;
-                max-width: 650px;
-            }
-
-            .checkout-box,
-            .order-summary {
-                padding: 22px;
             }
 
             .order-summary {
+
                 order: 2;
             }
         }
 
+
         @media (max-width: 500px) {
+
             .checkout-page {
-                padding: 22px 12px 45px;
+
+                padding:
+                    30px 14px 55px;
             }
+
 
             .checkout-box,
             .order-summary {
-                padding: 18px;
+
+                padding: 20px;
+
                 border-radius: 15px;
             }
 
+
             .checkout-box h1 {
+
                 font-size: 23px;
-                margin-bottom: 22px;
             }
 
-            .order-summary h2 {
-                font-size: 19px;
-            }
-
-            .checkout-box input,
-            .checkout-box select,
-            .checkout-box textarea {
-                font-size: 14px;
-                padding: 12px 13px;
-            }
-
-            .confirm-btn {
-                padding: 13px 15px;
-                font-size: 15px;
-            }
 
             .checkout-item img {
-                width: 52px;
-                height: 52px;
-                flex-basis: 52px;
+
+                width: 55px;
+
+                height: 55px;
             }
 
-            .checkout-item-info h4 {
-                font-size: 13px;
-            }
-
-            .checkout-item-price {
-                font-size: 13px;
-            }
         }
+
     </style>
+
 </head>
 
 <body>
 
-    <!-- Header -->
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
     <header class="site-header">
+
         <div class="container">
+
             <div class="logo">
-                <a href="index.html">Dream Shop</a>
+                <a href="index.html">
+                    Dream <span>Shop</span>
+                </a>
             </div>
 
+
             <nav class="main-nav">
-                <a href="index.html">Home</a>
-                <a href="index.html#products">Products</a>
-                <a href="index.html#categories">Categories</a>
-                <a href="cart.html">Cart 🛒</a>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#products">
+                    Products
+                </a>
+
+                <a href="index.html#categories">
+                    Categories
+                </a>
+
+                <a href="cart.html">
+                    Cart 🛒
+                </a>
+
             </nav>
+
         </div>
+
     </header>
 
 
-    <!-- Checkout -->
+
+    <!-- =====================================================
+         CHECKOUT
+    ===================================================== -->
+
     <main class="checkout-page">
 
         <div class="checkout-container">
 
-            <!-- Customer Information -->
+
+            <!-- CHECKOUT FORM -->
+
             <div class="checkout-box">
 
-                <h1>🛍️ Complete Your Order</h1>
+                <h1>
+                    🛍️ Complete Your Order
+                </h1>
+
 
                 <form id="checkoutForm">
 
-                    <label for="customerName">Full Name</label>
+
+                    <label for="customerName">
+                        Full Name
+                    </label>
+
                     <input
                         type="text"
                         id="customerName"
@@ -333,7 +658,11 @@
                         required
                     >
 
-                    <label for="customerPhone">Phone Number</label>
+
+                    <label for="customerPhone">
+                        Phone Number
+                    </label>
+
                     <input
                         type="tel"
                         id="customerPhone"
@@ -341,7 +670,11 @@
                         required
                     >
 
-                    <label for="customerDistrict">District</label>
+
+                    <label for="customerDistrict">
+                        District
+                    </label>
+
                     <input
                         type="text"
                         id="customerDistrict"
@@ -349,18 +682,27 @@
                         required
                     >
 
-                    <label for="customerAddress">Full Address</label>
+
+                    <label for="customerAddress">
+                        Full Address
+                    </label>
+
                     <textarea
                         id="customerAddress"
-                        placeholder="House, Road, Area, Thana..."
+                        placeholder="House, road, area, thana etc."
                         required
                     ></textarea>
 
-                    <label for="customerNote">Order Note (Optional)</label>
+
+                    <label for="customerNote">
+                        Order Note (Optional)
+                    </label>
+
                     <textarea
                         id="customerNote"
                         placeholder="Any special instructions?"
                     ></textarea>
+
 
                     <button
                         type="submit"
@@ -375,25 +717,47 @@
             </div>
 
 
-            <!-- Order Summary -->
+
+            <!-- ORDER SUMMARY -->
+
             <div class="order-summary">
 
-                <h2>📦 Your Order</h2>
+                <h2>
+                    📦 Your Order
+                </h2>
 
-                <div id="checkoutItems" class="checkout-items">
-                    <!-- Products will appear here -->
-                </div>
+
+                <div
+                    id="checkoutItems"
+                    class="checkout-items"
+                ></div>
+
 
                 <div class="checkout-total">
 
                     <div class="total-row">
-                        <span>Total Items</span>
-                        <span id="checkoutTotalItems">0</span>
+
+                        <span>
+                            Total Items
+                        </span>
+
+                        <span id="checkoutTotalItems">
+                            0
+                        </span>
+
                     </div>
 
+
                     <div class="total-row final">
-                        <span>Total Price</span>
-                        <span>৳<span id="checkoutTotalPrice">0</span></span>
+
+                        <span>
+                            Total Price
+                        </span>
+
+                        <span>
+                            ৳<span id="checkoutTotalPrice">0</span>
+                        </span>
+
                     </div>
 
                 </div>
@@ -405,20 +769,36 @@
     </main>
 
 
-    <!-- Footer -->
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
     <footer class="site-footer">
+
         <div class="container">
-            <p>© 2026 Dream Shop. All Rights Reserved.</p>
-            <p>Smart Gadgets • Better Life</p>
+
+            <p>
+                © 2026 Dream Shop. All Rights Reserved.
+            </p>
+
+            <p>
+                Smart Gadgets • Better Life
+            </p>
+
         </div>
+
     </footer>
 
 
-    <!-- Supabase -->
+
+    <!-- =====================================================
+         SCRIPTS
+    ===================================================== -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Main JavaScript -->
     <script src="script.js"></script>
 
+
 </body>
-</html>
