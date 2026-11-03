@@ -1,1004 +1,1236 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Product Details - Dream Shop</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="description"
+        content="Dream Shop - Premium smart gadgets and modern electronics for a better life."
+    >
+
+    <meta
+        name="keywords"
+        content="Dream Shop, gadgets Bangladesh, smart gadgets, electronics, earbuds, smart watch, power bank, projector"
+    >
+
+    <meta
+        name="author"
+        content="SHOYAIB"
+    >
+
+    <title>Product Details | Dream Shop</title>
+
 
     <style>
+
         /* =====================================================
-           PRODUCT DETAILS PAGE
+           RESET
         ===================================================== */
 
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             background:
-                radial-gradient(circle at 15% 20%, rgba(76, 29, 149, 0.30), transparent 35%),
-                radial-gradient(circle at 85% 80%, rgba(37, 99, 235, 0.24), transparent 35%),
-                linear-gradient(135deg, #020617, #0b1030 50%, #11113d);
+                radial-gradient(
+                    circle at top left,
+                    rgba(0, 229, 255, 0.08),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(124, 58, 237, 0.12),
+                    transparent 35%
+                ),
+                #070b17;
+
             color: #ffffff;
+
             min-height: 100vh;
         }
+
+
+        button,
+        input {
+            font: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
 
         /* =====================================================
            HEADER
         ===================================================== */
 
-        .product-details-header {
+        header {
             width: 100%;
-            position: relative;
-            z-index: 1000;
+
+            position: sticky;
+            top: 0;
+            z-index: 999;
+
+            background:
+                rgba(7, 11, 23, 0.88);
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.08);
         }
 
-        .product-details-header .nav-container {
-            width: min(1400px, 94%);
+
+        .navbar {
+            max-width: 1250px;
+
             margin: auto;
 
-            display: grid;
-            grid-template-columns: auto minmax(0, 1fr) auto;
-            align-items: center;
+            padding:
+                18px 25px;
 
-            gap: 34px;
-            padding: 18px 0;
-        }
-
-        .product-details-header .logo {
-            flex-shrink: 0;
-            white-space: nowrap;
-        }
-
-        .product-details-header .nav-menu {
             display: flex;
+
             align-items: center;
-            justify-content: center;
-            gap: 24px;
-            min-width: 0;
+
+            justify-content: space-between;
+
+            gap: 20px;
         }
 
-        .product-details-header .nav-menu a {
+
+        .logo {
+            font-size: 24px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
             color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: 0.3s ease;
         }
 
-        .product-details-header .nav-menu a:hover {
-            color: #7dd3fc;
+
+        .logo span {
+            color: #00e5ff;
         }
 
-        .product-details-header .nav-actions {
+
+        .nav-links {
             display: flex;
+
             align-items: center;
-            justify-content: flex-end;
-            gap: 14px;
-            min-width: 0;
+
+            gap: 28px;
+
+            list-style: none;
         }
 
-        .product-details-header .search-box {
-            width: 190px;
-            max-width: 100%;
+
+        .nav-links a {
+            color: #cbd5e1;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
         }
 
-        .product-details-header .search-box input {
-            width: 100%;
-            box-sizing: border-box;
+
+        .nav-links a:hover {
+            color: #00e5ff;
         }
 
-        .product-details-header .cart-icon {
-            flex-shrink: 0;
-            white-space: nowrap;
+
+        .nav-actions {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
         }
 
-        .product-details-header .menu-toggle {
-            display: none;
+
+        .cart-button {
+            position: relative;
+
+            width: 44px;
+            height: 44px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.1);
+
+            background:
+                rgba(255, 255, 255, 0.05);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
         }
+
+
+        .cart-count {
+            position: absolute;
+
+            top: -5px;
+            right: -5px;
+
+            min-width: 19px;
+            height: 19px;
+
+            padding: 0 5px;
+
+            border-radius: 50px;
+
+            background: #00e5ff;
+
+            color: #001018;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
 
         /* =====================================================
-           PRODUCT DETAILS MAIN
+           MAIN
         ===================================================== */
 
-        .product-details-page {
-            width: min(1200px, 92%);
-            margin: 0 auto;
-            padding: 65px 0 90px;
+        main {
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding:
+                55px 25px
+                80px;
         }
 
-        .product-details-wrapper {
+
+        .breadcrumb {
+            margin-bottom: 30px;
+
+            color: #94a3b8;
+
+            font-size: 14px;
+        }
+
+
+        .breadcrumb a {
+            color: #00e5ff;
+        }
+
+
+        /* =====================================================
+           PRODUCT AREA
+        ===================================================== */
+
+        .product-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(0, 1fr);
+
             gap: 60px;
 
             align-items: center;
-
-            background: rgba(15, 23, 42, 0.72);
-            border: 1px solid rgba(129, 140, 248, 0.22);
-            border-radius: 30px;
-
-            padding: 45px;
-
-            box-shadow:
-                0 25px 80px rgba(0, 0, 0, 0.45),
-                inset 0 0 40px rgba(99, 102, 241, 0.04);
-
-            backdrop-filter: blur(18px);
         }
+
 
         /* =====================================================
            PRODUCT IMAGE
         ===================================================== */
 
-        .product-image-section {
-            position: relative;
+        .product-image-area {
+            min-height: 520px;
+
+            border-radius: 30px;
+
+            padding: 45px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            min-height: 460px;
+            position: relative;
+
+            overflow: hidden;
 
             background:
-                radial-gradient(
-                    circle,
-                    rgba(99, 102, 241, 0.18),
-                    transparent 65%
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.08),
+                    rgba(255,255,255,0.02)
                 );
 
-            border-radius: 25px;
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,0.35);
         }
 
-        .product-image-section img {
+
+        .product-image-area::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(0,229,255,0.12);
+
+            filter: blur(70px);
+        }
+
+
+        #productImage {
+            position: relative;
+
+            z-index: 2;
+
             width: 100%;
+
             max-width: 470px;
+
             max-height: 470px;
 
             object-fit: contain;
 
-            display: block;
-
-            filter:
-                drop-shadow(0 25px 35px rgba(0, 0, 0, 0.55));
-
-            transition: transform 0.45s ease;
+            transition:
+                transform 0.4s ease;
         }
 
-        .product-image-section img:hover {
-            transform: scale(1.04);
+
+        #productImage:hover {
+            transform:
+                scale(1.05)
+                translateY(-5px);
         }
+
 
         /* =====================================================
            PRODUCT INFO
         ===================================================== */
 
         .product-info {
-            padding: 10px 0;
+            width: 100%;
         }
 
-        .product-badge {
+
+        .product-category {
             display: inline-flex;
+
             align-items: center;
 
-            padding: 8px 15px;
-            margin-bottom: 18px;
+            padding:
+                8px 14px;
 
-            border-radius: 999px;
+            border-radius: 50px;
 
-            background: linear-gradient(
-                135deg,
-                rgba(99, 102, 241, 0.20),
-                rgba(56, 189, 248, 0.14)
-            );
+            background:
+                rgba(0,229,255,0.08);
 
-            border: 1px solid rgba(125, 211, 252, 0.25);
+            border:
+                1px solid
+                rgba(0,229,255,0.18);
 
-            color: #7dd3fc;
+            color: #00e5ff;
 
             font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
             text-transform: uppercase;
+
+            margin-bottom: 20px;
         }
 
-        .product-info h1 {
-            margin: 0 0 15px;
 
-            font-size: clamp(32px, 4vw, 50px);
-            line-height: 1.08;
+        #productName {
+            font-size:
+                clamp(32px, 5vw, 55px);
 
-            color: #ffffff;
+            line-height: 1.05;
 
-            font-weight: 800;
+            font-weight: 900;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 18px;
         }
 
-        .product-price {
-            margin-bottom: 22px;
-
-            font-size: 31px;
-            font-weight: 800;
-
-            color: #67e8f9;
-        }
 
         .product-description {
-            color: #cbd5e1;
+            color: #a8b4c7;
 
-            font-size: 15px;
+            font-size: 16px;
+
             line-height: 1.8;
+
+            margin-bottom: 25px;
+
+            max-width: 620px;
+        }
+
+
+        #productPrice {
+            font-size: 32px;
+
+            font-weight: 900;
+
+            color: #00e5ff;
 
             margin-bottom: 28px;
         }
+
 
         /* =====================================================
            FEATURES
         ===================================================== */
 
-        .product-features {
-            margin: 0 0 30px;
-            padding: 0;
+        .features {
+            display: grid;
 
-            list-style: none;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin-bottom: 30px;
         }
 
-        .product-features li {
-            position: relative;
 
-            padding-left: 28px;
-            margin-bottom: 12px;
+        .feature {
+            padding:
+                14px 16px;
 
-            color: #e2e8f0;
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            color: #cbd5e1;
 
             font-size: 14px;
-            line-height: 1.6;
+
+            line-height: 1.5;
         }
 
-        .product-features li::before {
+
+        .feature::before {
             content: "✓";
 
-            position: absolute;
-            left: 0;
-            top: 0;
+            color: #00e5ff;
 
-            color: #67e8f9;
+            font-weight: 900;
 
-            font-weight: 800;
+            margin-right: 8px;
         }
+
 
         /* =====================================================
            QUANTITY
         ===================================================== */
 
-        .quantity-area {
+        .purchase-area {
             display: flex;
-            align-items: center;
-            gap: 15px;
 
-            margin-bottom: 25px;
-        }
+            flex-wrap: wrap;
 
-        .quantity-label {
-            color: #cbd5e1;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .quantity-control {
-            display: flex;
             align-items: center;
 
-            border: 1px solid rgba(148, 163, 184, 0.25);
-            border-radius: 12px;
+            gap: 14px;
+        }
+
+
+        .quantity-box {
+            display: flex;
+
+            align-items: center;
+
+            height: 52px;
+
+            border-radius: 14px;
 
             overflow: hidden;
 
-            background: rgba(15, 23, 42, 0.75);
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            background:
+                rgba(255,255,255,0.04);
         }
 
-        .quantity-control button {
-            width: 40px;
-            height: 40px;
 
-            border: 0;
+        .quantity-btn {
+            width: 50px;
 
-            background: transparent;
-            color: #ffffff;
+            height: 100%;
 
-            font-size: 20px;
-            font-weight: 700;
+            border: none;
 
-            cursor: pointer;
+            background:
+                rgba(255,255,255,0.04);
 
-            transition: 0.25s ease;
+            color: white;
+
+            font-size: 22px;
+
+            transition: 0.25s;
         }
 
-        .quantity-control button:hover {
-            background: rgba(99, 102, 241, 0.25);
+
+        .quantity-btn:hover {
+            background:
+                rgba(0,229,255,0.12);
+
+            color: #00e5ff;
         }
 
-        .quantity-control input {
-            width: 45px;
-            height: 40px;
 
-            border: 0;
+        #quantity {
+            width: 55px;
+
+            height: 100%;
+
+            border: none;
+
             outline: none;
 
             background: transparent;
-            color: #ffffff;
+
+            color: white;
 
             text-align: center;
 
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 16px;
+
+            font-weight: 800;
         }
+
 
         /* =====================================================
-           ACTION BUTTONS
+           BUTTONS
         ===================================================== */
 
-        .product-actions {
+        .action-buttons {
             display: flex;
-            align-items: center;
-            gap: 14px;
 
             flex-wrap: wrap;
+
+            gap: 12px;
+
+            flex: 1;
         }
 
-        .product-actions button {
+
+        .action-btn {
+            min-height: 52px;
+
+            padding:
+                0 24px;
+
+            border-radius: 14px;
+
             border: none;
-            outline: none;
-
-            min-height: 50px;
-            padding: 0 25px;
-
-            border-radius: 13px;
 
             font-size: 14px;
-            font-weight: 700;
 
-            cursor: pointer;
+            font-weight: 900;
 
             transition:
                 transform 0.25s ease,
-                box-shadow 0.25s ease,
-                opacity 0.25s ease;
+                box-shadow 0.25s ease;
         }
 
-        .product-actions button:hover {
-            transform: translateY(-2px);
+
+        .action-btn:hover {
+            transform:
+                translateY(-2px);
         }
 
-        .buy-now-btn {
-            background: linear-gradient(
-                135deg,
-                #6366f1,
-                #8b5cf6
-            );
 
-            color: #ffffff;
+        #buyNowButton {
+            background:
+                linear-gradient(
+                    135deg,
+                    #00e5ff,
+                    #00b8d4
+                );
+
+            color: #001018;
 
             box-shadow:
-                0 12px 30px rgba(99, 102, 241, 0.28);
+                0 10px 30px
+                rgba(0,229,255,0.2);
         }
 
-        .buy-now-btn:hover {
+
+        #buyNowButton:hover {
             box-shadow:
-                0 16px 38px rgba(99, 102, 241, 0.40);
+                0 15px 40px
+                rgba(0,229,255,0.32);
         }
 
-        .add-cart-btn {
-            background: rgba(255, 255, 255, 0.06);
 
-            border: 1px solid rgba(125, 211, 252, 0.28) !important;
+        #detailsAddCart {
+            background:
+                rgba(255,255,255,0.07);
 
-            color: #ffffff;
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
         }
 
-        .add-cart-btn:hover {
-            background: rgba(56, 189, 248, 0.12);
+
+        #detailsAddCart:hover {
+            background:
+                rgba(255,255,255,0.12);
         }
+
 
         /* =====================================================
-           BACK BUTTON
+           EXTRA INFO
         ===================================================== */
 
-        .back-products {
-            margin-top: 30px;
+        .trust-box {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-top: 35px;
         }
 
-        .back-products a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
 
-            color: #94a3b8;
+        .trust-item {
+            padding: 18px 12px;
 
-            text-decoration: none;
+            text-align: center;
 
-            font-size: 14px;
-            font-weight: 600;
+            border-radius: 16px;
 
-            transition: 0.25s ease;
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.06);
         }
 
-        .back-products a:hover {
-            color: #67e8f9;
+
+        .trust-icon {
+            font-size: 21px;
+
+            margin-bottom: 8px;
         }
+
+
+        .trust-title {
+            font-size: 12px;
+
+            font-weight: 800;
+
+            color: #e2e8f0;
+
+            margin-bottom: 4px;
+        }
+
+
+        .trust-text {
+            font-size: 10px;
+
+            color: #64748b;
+
+            line-height: 1.4;
+        }
+
 
         /* =====================================================
            FOOTER
         ===================================================== */
 
-        .product-details-footer {
-            width: min(1200px, 92%);
-            margin: 0 auto;
+        footer {
+            border-top:
+                1px solid
+                rgba(255,255,255,0.07);
 
-            padding: 25px 0 40px;
+            padding:
+                30px 25px;
 
             text-align: center;
 
             color: #64748b;
 
             font-size: 13px;
-
-            border-top: 1px solid rgba(148, 163, 184, 0.10);
         }
 
-        /* =====================================================
-           TABLET
-        ===================================================== */
 
-        @media (max-width: 1050px) {
-
-            .product-details-header .nav-container {
-                grid-template-columns: auto 1fr auto;
-                gap: 18px;
-            }
-
-            .product-details-header .nav-menu {
-                gap: 14px;
-            }
-
-            .product-details-header .nav-menu a {
-                font-size: 12px;
-            }
-
-            .product-details-header .search-box {
-                width: 150px;
-            }
-
-            .product-details-wrapper {
-                gap: 40px;
-                padding: 35px;
-            }
+        footer strong {
+            color: #94a3b8;
         }
+
 
         /* =====================================================
            MOBILE
         ===================================================== */
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
 
-            .product-details-header .nav-container {
-                display: flex;
-                justify-content: space-between;
-
-                gap: 15px;
-            }
-
-            .product-details-header .nav-menu {
+            .nav-links {
                 display: none;
             }
 
-            .product-details-header .nav-actions {
-                margin-left: auto;
-            }
 
-            .product-details-header .search-box {
-                display: none;
-            }
-
-            .product-details-header .menu-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                width: 42px;
-                height: 42px;
-
-                border: 1px solid rgba(148, 163, 184, 0.25);
-                border-radius: 10px;
-
-                background: rgba(15, 23, 42, 0.65);
-
-                color: #ffffff;
-
-                cursor: pointer;
-            }
-
-            .product-details-page {
-                width: 92%;
-                padding-top: 35px;
-            }
-
-            .product-details-wrapper {
+            .product-container {
                 grid-template-columns: 1fr;
 
-                gap: 30px;
-
-                padding: 25px;
+                gap: 35px;
             }
 
-            .product-image-section {
-                min-height: 350px;
+
+            .product-image-area {
+                min-height: 400px;
             }
 
-            .product-info h1 {
-                font-size: 34px;
+
+            #productImage {
+                max-height: 350px;
             }
+
         }
 
-        /* =====================================================
-           SMALL MOBILE
-        ===================================================== */
 
-        @media (max-width: 520px) {
+        @media (max-width: 600px) {
 
-            .product-details-header .nav-container {
-                padding: 14px 0;
+            main {
+                padding:
+                    35px 15px
+                    55px;
             }
 
-            .product-details-wrapper {
-                padding: 20px;
+
+            .navbar {
+                padding:
+                    14px 15px;
+            }
+
+
+            .logo {
+                font-size: 20px;
+            }
+
+
+            .product-image-area {
+                min-height: 330px;
+
+                padding: 25px;
+
                 border-radius: 22px;
             }
 
-            .product-image-section {
-                min-height: 280px;
+
+            #productName {
+                font-size: 34px;
             }
 
-            .product-image-section img {
-                max-width: 320px;
-                max-height: 320px;
-            }
 
-            .product-info h1 {
-                font-size: 29px;
-            }
-
-            .product-price {
+            #productPrice {
                 font-size: 27px;
             }
 
-            .product-actions {
-                flex-direction: column;
-                align-items: stretch;
+
+            .features {
+                grid-template-columns: 1fr;
             }
 
-            .product-actions button {
+
+            .purchase-area {
+                align-items: stretch;
+
+                flex-direction: column;
+            }
+
+
+            .quantity-box {
+                width: 100%;
+
+                justify-content: center;
+            }
+
+
+            .action-buttons {
+                width: 100%;
+
+                flex-direction: column;
+            }
+
+
+            .action-btn {
                 width: 100%;
             }
 
-            .quantity-area {
-                justify-content: space-between;
+
+            .trust-box {
+                grid-template-columns: 1fr;
             }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
 
     <!-- =====================================================
          HEADER
     ===================================================== -->
 
-    <header class="product-details-header">
+    <header>
 
-        <div class="nav-container">
+        <nav class="navbar">
 
-            <a href="index.html" class="logo">
+            <a
+                href="index.html"
+                class="logo"
+            >
                 DREAM<span>SHOP</span>
             </a>
 
-            <nav class="nav-menu">
 
-                <a href="index.html">Home</a>
-                <a href="index.html#products">Products</a>
-                <a href="index.html#categories">Categories</a>
-                <a href="index.html#deals">Deals</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
+            <ul class="nav-links">
 
-            </nav>
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#products">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#deals">
+                        Deals
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#contact">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
 
             <div class="nav-actions">
 
-                <div class="search-box">
-                    <input
-                        type="text"
-                        id="productSearch"
-                        placeholder="Search products..."
-                    >
-                </div>
-
-                <a href="cart.html" class="cart-icon">
-                    🛒
-                    <span id="cartCount">0</span>
-                </a>
-
-                <button
-                    type="button"
-                    class="menu-toggle"
-                    id="menuToggle"
-                    aria-label="Open menu"
+                <a
+                    href="cart.html"
+                    class="cart-button"
+                    aria-label="Shopping Cart"
                 >
-                    ☰
-                </button>
+
+                    🛒
+
+                    <span
+                        class="cart-count"
+                        id="cartCount"
+                    >
+                        0
+                    </span>
+
+                </a>
 
             </div>
 
-        </div>
+        </nav>
 
     </header>
 
 
+
     <!-- =====================================================
-         PRODUCT DETAILS
+         MAIN
     ===================================================== -->
 
-    <main class="product-details-page">
+    <main>
 
-        <div class="product-details-wrapper">
+
+        <!-- BREADCRUMB -->
+
+        <div class="breadcrumb">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <span>
+                &nbsp; / &nbsp;
+            </span>
+
+            <a href="index.html#products">
+                Products
+            </a>
+
+            <span>
+                &nbsp; / &nbsp;
+            </span>
+
+            <span>
+                Product Details
+            </span>
+
+        </div>
+
+
+
+        <!-- PRODUCT -->
+
+        <section class="product-container">
+
 
             <!-- PRODUCT IMAGE -->
 
-            <section class="product-image-section">
+            <div class="product-image-area">
 
                 <img
                     id="productImage"
-                    src=""
+                    src="images/earbuds.png"
                     alt="Product"
                 >
 
-            </section>
+            </div>
+
 
 
             <!-- PRODUCT INFORMATION -->
 
-            <section class="product-info">
+            <div class="product-info">
 
-                <div class="product-badge">
-                    Premium Gadget
-                </div>
-
-                <h1 id="productName">
-                    Product Name
-                </h1>
 
                 <div
-                    class="product-price"
-                    id="productPrice"
+                    class="product-category"
+                    id="productCategory"
                 >
-                    ৳0
+                    SMART GADGET
                 </div>
+
+
+                <h1 id="productName">
+                    Wireless Earbuds
+                </h1>
+
 
                 <p
                     class="product-description"
                     id="productDescription"
                 >
-                    Product description will appear here.
+                    Experience premium sound quality,
+                    modern design and reliable everyday
+                    performance with Dream Shop gadgets.
                 </p>
 
 
-                <ul
-                    class="product-features"
+                <div id="productPrice">
+                    ৳1,850
+                </div>
+
+
+
+                <!-- FEATURES -->
+
+                <div
+                    class="features"
                     id="productFeatures"
                 >
-                </ul>
+
+                    <div class="feature">
+                        Premium Quality
+                    </div>
+
+                    <div class="feature">
+                        Modern Design
+                    </div>
+
+                    <div class="feature">
+                        Fast Delivery
+                    </div>
+
+                    <div class="feature">
+                        Easy Returns
+                    </div>
+
+                </div>
 
 
-                <!-- QUANTITY -->
 
-                <div class="quantity-area">
+                <!-- PURCHASE -->
 
-                    <span class="quantity-label">
-                        Quantity
-                    </span>
+                <div class="purchase-area">
 
-                    <div class="quantity-control">
+
+                    <!-- QUANTITY -->
+
+                    <div class="quantity-box">
+
 
                         <button
                             type="button"
-                            id="decreaseQty"
+                            class="quantity-btn"
+                            id="decreaseQuantity"
+                            aria-label="Decrease quantity"
                         >
                             −
                         </button>
+
 
                         <input
                             type="number"
                             id="quantity"
                             value="1"
                             min="1"
-                            max="99"
+                            max="20"
+                            inputmode="numeric"
+                            aria-label="Product quantity"
                         >
+
 
                         <button
                             type="button"
-                            id="increaseQty"
+                            class="quantity-btn"
+                            id="increaseQuantity"
+                            aria-label="Increase quantity"
                         >
                             +
                         </button>
 
+
                     </div>
 
+
+
+                    <!-- ACTION BUTTONS -->
+
+                    <div class="action-buttons">
+
+
+                        <button
+                            type="button"
+                            class="action-btn"
+                            id="buyNowButton"
+                        >
+                            BUY NOW
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="action-btn"
+                            id="detailsAddCart"
+                        >
+                            ADD TO CART
+                        </button>
+
+
+                    </div>
+
+
                 </div>
 
 
-                <!-- ACTION BUTTONS -->
 
-                <div class="product-actions">
+                <!-- TRUST -->
 
-                    <button
-                        type="button"
-                        class="buy-now-btn"
-                        id="buyNowBtn"
-                    >
-                        Buy Now
-                    </button>
+                <div class="trust-box">
 
-                    <button
-                        type="button"
-                        class="add-cart-btn"
-                        id="addToCartBtn"
-                    >
-                        Add to Cart
-                    </button>
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">
+                            🚚
+                        </div>
+
+                        <div class="trust-title">
+                            FAST DELIVERY
+                        </div>
+
+                        <div class="trust-text">
+                            Quick delivery across Bangladesh
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">
+                            ✓
+                        </div>
+
+                        <div class="trust-title">
+                            QUALITY PRODUCT
+                        </div>
+
+                        <div class="trust-text">
+                            Carefully selected smart gadgets
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">
+                            🔄
+                        </div>
+
+                        <div class="trust-title">
+                            EASY RETURNS
+                        </div>
+
+                        <div class="trust-text">
+                            Customer-friendly return policy
+                        </div>
+
+                    </div>
+
 
                 </div>
 
 
-                <!-- BACK -->
+            </div>
 
-                <div class="back-products">
 
-                    <a href="index.html#products">
-                        ← Back to Products
-                    </a>
+        </section>
 
-                </div>
-
-            </section>
-
-        </div>
 
     </main>
+
 
 
     <!-- =====================================================
          FOOTER
     ===================================================== -->
 
-    <footer class="product-details-footer">
+    <footer>
 
-        © 2026 Dream Shop. All rights reserved.
+        <p>
+            © 2026
+            <strong>DREAM SHOP</strong>.
+            All Rights Reserved.
+        </p>
+
+        <p style="margin-top:8px;">
+            Smart Gadgets • Better Life
+        </p>
 
     </footer>
 
 
+
     <!-- =====================================================
-         SCRIPT
+         SUPABASE
+    ===================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+
+    <!-- =====================================================
+         MAIN DREAM SHOP SCRIPT
+         
+         IMPORTANT:
+         Product quantity, Add to Cart, Buy Now,
+         Checkout এবং Order system সব script.js
+         থেকে পরিচালিত হবে।
+         
+         এখানে কোনো duplicate Buy Now script নেই।
     ===================================================== -->
 
     <script src="script.js"></script>
 
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const decreaseBtn =
-                document.getElementById("decreaseQty");
-
-            const increaseBtn =
-                document.getElementById("increaseQty");
-
-            const quantityInput =
-                document.getElementById("quantity");
-
-            const buyNowBtn =
-                document.getElementById("buyNowBtn");
-
-
-            /* =================================================
-               DECREASE QUANTITY
-            ================================================= */
-
-            if (decreaseBtn && quantityInput) {
-
-                decreaseBtn.addEventListener("click", function () {
-
-                    let quantity =
-                        parseInt(quantityInput.value) || 1;
-
-                    if (quantity > 1) {
-                        quantity--;
-                    }
-
-                    quantityInput.value = quantity;
-
-                });
-
-            }
-
-
-            /* =================================================
-               INCREASE QUANTITY
-            ================================================= */
-
-            if (increaseBtn && quantityInput) {
-
-                increaseBtn.addEventListener("click", function () {
-
-                    let quantity =
-                        parseInt(quantityInput.value) || 1;
-
-                    if (quantity < 99) {
-                        quantity++;
-                    }
-
-                    quantityInput.value = quantity;
-
-                });
-
-            }
-
-
-            /* =================================================
-               QUANTITY INPUT
-            ================================================= */
-
-            if (quantityInput) {
-
-                quantityInput.addEventListener("input", function () {
-
-                    let quantity =
-                        parseInt(this.value) || 1;
-
-                    if (quantity < 1) {
-                        quantity = 1;
-                    }
-
-                    if (quantity > 99) {
-                        quantity = 99;
-                    }
-
-                    this.value = quantity;
-
-                });
-
-            }
-
-
-            /* =================================================
-               BUY NOW
-            ================================================= */
-
-            if (buyNowBtn) {
-
-                buyNowBtn.addEventListener("click", function () {
-
-                    const productNameElement =
-                        document.getElementById("productName");
-
-                    const productPriceElement =
-                        document.getElementById("productPrice");
-
-                    const productImageElement =
-                        document.getElementById("productImage");
-
-
-                    const productName =
-                        productNameElement
-                            ? productNameElement.textContent.trim()
-                            : "";
-
-
-                    const productPriceText =
-                        productPriceElement
-                            ? productPriceElement.textContent.trim()
-                            : "৳0";
-
-
-                    const productImage =
-                        productImageElement
-                            ? productImageElement.getAttribute("src")
-                            : "";
-
-
-                    let quantity =
-                        parseInt(quantityInput.value) || 1;
-
-
-                    if (quantity < 1) {
-                        quantity = 1;
-                    }
-
-                    if (quantity > 99) {
-                        quantity = 99;
-                    }
-
-
-                    /* Convert price to number */
-
-                    const productPrice =
-                        parseInt(
-                            productPriceText.replace(/[^\d]/g, "")
-                        ) || 0;
-
-
-                    /* Create selected product */
-
-                    const buyNowProduct = {
-
-                        id: "buy-now-" + Date.now(),
-
-                        name: productName,
-
-                        price: productPrice,
-
-                        image: productImage,
-
-                        quantity: quantity,
-
-                        total: productPrice * quantity
-
-                    };
-
-
-                    /* Save Buy Now product */
-
-                    localStorage.setItem(
-                        "dreamShopBuyNow",
-                        JSON.stringify(buyNowProduct)
-                    );
-
-
-                    /* Also create checkout cart */
-
-                    const checkoutItem = {
-
-                        id: buyNowProduct.id,
-
-                        name: buyNowProduct.name,
-
-                        price: buyNowProduct.price,
-
-                        image: buyNowProduct.image,
-
-                        quantity: buyNowProduct.quantity,
-
-                        total: buyNowProduct.total
-
-                    };
-
-
-                    localStorage.setItem(
-                        "dreamShopCheckoutItems",
-                        JSON.stringify([checkoutItem])
-                    );
-
-
-                    /* Go to Order page */
-
-                    window.location.href = "checkout.html";
-
-                });
-
-            }
-
-        });
-
-    </script>
 
 </body>
+
 </html>
